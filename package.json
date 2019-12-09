@@ -18,7 +18,8 @@
     "serve": "ts-node index",
     "build": "tsc --project tsconfig.prod.json",
     "docs": "typedoc --mode file src/*.ts",
-    "prepack": "npm run build"
+    "make": "npm run lint && npm run test && npm run build && npm run docs",
+    "prepack": "npm run make"
   },
   "publishConfig": {
     "access": "public"
