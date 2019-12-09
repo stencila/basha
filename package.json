@@ -1,7 +1,7 @@
 {
   "name": "@stencila/basha",
   "version": "0.1.0",
-  "description": "Bash interpreter for Stencila Executa",
+  "description": "Bash interpreter for Stencila",
   "main": "dist/index.js",
   "bin": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -26,6 +26,7 @@
   "keywords": [
     "bash",
     "interpreter",
+    "Stencila",
     "Executa"
   ],
   "author": "Stencila <hello@stenci.la>",
