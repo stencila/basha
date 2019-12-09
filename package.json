@@ -1,0 +1,95 @@
+{
+  "name": "@stencila/basha",
+  "version": "0.1.0",
+  "description": "Bash interpreter for Stencila Executa",
+  "main": "dist/index.js",
+  "bin": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "postinstall": "node dist/index.js register",
+    "lint": "eslint 'src/*.ts' --fix",
+    "format": "npx prettier --write '**/*.{md,ts}'",
+    "test": "jest --runInBand --forceExit",
+    "test:watch": "jest --watch",
+    "test:cover": "jest  --runInBand --forceExit --collectCoverage",
+    "serve": "ts-node index",
+    "build": "tsc --project tsconfig.prod.json",
+    "docs": "typedoc --mode file src/*.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stencila/basha.git"
+  },
+  "keywords": [
+    "bash",
+    "interpreter",
+    "Executa"
+  ],
+  "author": "Stencila <hello@stenci.la>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/stencila/basha/issues"
+  },
+  "homepage": "https://github.com/stencila/basha#readme",
+  "dependencies": {
+    "@stencila/executa": "^1.0.0",
+    "node-pty": "^0.9.0"
+  },
+  "devDependencies": {
+    "@stencila/dev-config": "^1.4.0",
+    "@types/jest": "24.0.23",
+    "jest": "24.9.0",
+    "ts-jest": "24.2.0",
+    "ts-node": "^8.5.4",
+    "typedoc": "^0.15.3",
+    "typescript": "^3.7.3"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "testMatch": [
+      "**/src/*.test.ts"
+    ]
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ],
+    "rules": {
+      "scope-case": [
+        2,
+        "always",
+        "sentence-case"
+      ],
+      "subject-case": [
+        2,
+        "always",
+        "sentence-case"
+      ]
+    }
+  },
+  "eslintConfig": {
+    "extends": "@stencila/eslint-config",
+    "env": {
+      "jest": true
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "prettier": "@stencila/dev-config/prettier-config.json",
+  "renovate": {
+    "extends": [
+      "@stencila"
+    ]
+  },
+  "release": {
+    "extends": "@stencila/semantic-release-config"
+  }
+}
