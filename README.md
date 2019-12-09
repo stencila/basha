@@ -17,6 +17,8 @@ npm install --global @stencila/basha
 
 In the future, Basha will be bundled as part of the self contained [Stencila command line tool](https://github.com/stencila/stencila#cli).
 
+Windows is [not yet supported](https://github.com/stencila/basha/issues/2).
+
 ## Use
 
 If you have [`executa`](https://github.com/stencila/executa) installed globally then you can run it using the `repl` command and specifying `bash` as the starting language,
