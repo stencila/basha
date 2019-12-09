@@ -105,7 +105,7 @@ describe('call', () => {
 
 test('exit handling', async () => {
   expect(await bash.executeCode('VAR=1')).toEqual('')
-  expect(await bash.executeCode('echo $VAR')).toEqual('1')
+  expect(await bash.executeCode('echo $VAR')).toEqual(1)
   expect(await bash.executeCode('exit')).toEqual('exit')
   // Recovers by creating new bash process, but
   // the env var is no longer set

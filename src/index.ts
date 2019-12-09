@@ -15,13 +15,16 @@ import * as pty from 'node-pty'
 const log = logga.getLogger('basha')
 
 export class BashInterpreter extends Listener {
-  protected child?: pty.IPty
-
   /**
    * Programming language names supported by this
    * interpreter.
    */
   readonly programmingLanguages = ['bash', 'sh']
+
+  /**
+   * The pseudo-terminal in which bash is executed.
+   */
+  protected child?: pty.IPty
 
   /**
    * The prompt used to identify when the pseudo-
@@ -121,13 +124,11 @@ export class BashInterpreter extends Listener {
           let output
           let errors
           try {
-            output = this.parseOutput(await this.executeCode(text))
+            output = await this.executeCode(text)
           } catch (error) {
             const { message } = error
             errors = [schema.codeError('execute', { message })]
           }
-
-          if (output !== undefined) output = this.parseOutput(output)
 
           let executed
           if (schema.isA('CodeChunk', node)) {
@@ -146,7 +147,9 @@ export class BashInterpreter extends Listener {
   /**
    * Start a Bash shell process.
    *
-   * This creates a pseudo-terminal.
+   * Creates a pseudo-terminal and registers
+   * event handles on it to capture output and
+   * handle unexpected exit.
    */
   public startBash(): pty.IPty {
     log.debug(`Starting bash`)
@@ -183,7 +186,14 @@ export class BashInterpreter extends Listener {
     return child
   }
 
-  enterCode(code: string): Promise<string> {
+  /**
+   * Enter Bash code into the terminal and set up handler to
+   * process output.
+   *
+   * @param code Code to enter.
+   * @returns A promise resolving to the output.
+   */
+  public enterCode(code: string): Promise<string> {
     const child = this.child === undefined ? this.startBash() : this.child
     const input = code + '\r'
     const enter = (resolve: (output: string) => void): void => {
@@ -206,13 +216,34 @@ export class BashInterpreter extends Listener {
       : new Promise(resolve => (this.whenReady = () => enter(resolve)))
   }
 
+  /**
+   * Execute Bash code.
+   *
+   * This method enters the code, parses the output and
+   * checks the exit code. If the exit code is non-zero
+   * if throws an error with the output.
+   *
+   * @param code Code to execute
+   * @returns A promise resolving to the output from the command.
+   */
   async executeCode(code: string): Promise<string> {
     const output = await this.enterCode(code)
+    const result = this.parseOutput(output)
     const exitCode = await this.enterCode('echo $?')
-    if (exitCode === '0') return output
-    else throw new Error(output)
+    if (exitCode === '0') return result
+    else throw new Error(result)
   }
 
+  /**
+   * Parse output from a command.
+   *
+   * Attempts to parse the output as JSON.
+   * In the future, more advanced parsing
+   * such as parsing of fixed-width tables
+   * may be done.
+   *
+   * @param output Output string to parse
+   */
   parseOutput(output: string): string {
     try {
       return JSON.parse(output)
@@ -221,6 +252,10 @@ export class BashInterpreter extends Listener {
     }
   }
 
+  /**
+   * @override Override of `Listener.stop` to
+   * stop the pseudo-terminal as well as servers.
+   */
   async stop(): Promise<void> {
     await super.stop()
 
