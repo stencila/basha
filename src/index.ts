@@ -24,7 +24,7 @@ export class BashInterpreter extends Listener {
   /**
    * The pseudo-terminal in which bash is executed.
    */
-  protected child?: pty.IPty
+  protected terminal?: pty.IPty
 
   /**
    * The prompt used to identify when the pseudo-
@@ -154,7 +154,7 @@ export class BashInterpreter extends Listener {
   public startBash(): pty.IPty {
     log.debug(`Starting bash`)
 
-    const child = (this.child = pty.spawn(
+    const terminal = (this.terminal = pty.spawn(
       'bash',
       // Use `--norc` to prevent loading of resource file which
       // may overwrite `PS1` and cause this to fail
@@ -167,7 +167,7 @@ export class BashInterpreter extends Listener {
       }
     ))
 
-    child.onData((data: string) => {
+    terminal.onData((data: string) => {
       if (data.endsWith(this.prompt)) {
         this.output += data.slice(0, -this.prompt.length)
         this.isReady = true
@@ -177,13 +177,13 @@ export class BashInterpreter extends Listener {
       }
     })
 
-    child.onExit(() => {
+    terminal.onExit(() => {
       if (!this.isStopping) log.error(`Bash exited prematurely`)
       if (this.whenReady !== undefined) this.whenReady()
-      this.child = undefined
+      this.terminal = undefined
     })
 
-    return child
+    return terminal
   }
 
   /**
@@ -194,7 +194,8 @@ export class BashInterpreter extends Listener {
    * @returns A promise resolving to the output.
    */
   public enterCode(code: string): Promise<string> {
-    const child = this.child === undefined ? this.startBash() : this.child
+    const terminal =
+      this.terminal === undefined ? this.startBash() : this.terminal
     const input = code + '\r'
     const enter = (resolve: (output: string) => void): void => {
       this.output = ''
@@ -209,7 +210,7 @@ export class BashInterpreter extends Listener {
         if (output.endsWith('\n')) output = output.slice(0, -1)
         resolve(output)
       }
-      child.write(input)
+      terminal.write(input)
     }
     return this.isReady
       ? new Promise(resolve => enter(resolve))
@@ -260,10 +261,10 @@ export class BashInterpreter extends Listener {
     await super.stop()
 
     log.debug(`Stopping bash`)
-    if (this.child !== undefined) {
+    if (this.terminal !== undefined) {
       this.isStopping = true
-      this.child.kill()
-      this.child = undefined
+      this.terminal.kill()
+      this.terminal = undefined
     }
   }
 }
