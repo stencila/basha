@@ -20,6 +20,9 @@
     "docs": "typedoc --mode file src/*.ts",
     "prepack": "npm run build"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/stencila/basha.git"
