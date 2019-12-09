@@ -59,6 +59,9 @@ jobs:
 
       - script: |
           npm install
+          # Build docs to ensure that docs folder
+          # is present for semantic-release verifyConditions
+          npm run docs
           npx semantic-release
         env:
           GIT_AUTHOR_NAME: Stencila CI Bot
