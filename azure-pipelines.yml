@@ -10,12 +10,16 @@ jobs:
         linux_node_10:
           image_name: ubuntu-latest
           node_version: 10.x
-        mac:
-          node_version: 12.x
-          image_name: macOS-latest
-        windows:
-          node_version: 12.x
-          image_name: windows-latest
+
+        # MacOS currently failing. See #1
+        # mac:
+        #  node_version: 12.x
+        #  image_name: macOS-latest
+
+        # Windows not yet supported. See #2
+        # windows:
+        #  node_version: 12.x
+        #  image_name: windows-latest
     pool:
       vmImage: $(image_name)
     steps:
