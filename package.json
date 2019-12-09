@@ -9,7 +9,7 @@
     "dist"
   ],
   "scripts": {
-    "postinstall": "node dist/index.js register",
+    "postinstall": "node -e \"try {require('./dist').run('register')} catch {}\"",
     "lint": "eslint 'src/*.ts' --fix",
     "format": "npx prettier --write '**/*.{md,ts}'",
     "test": "jest --runInBand --forceExit",

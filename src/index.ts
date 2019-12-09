@@ -30,12 +30,27 @@ export class BashInterpreter extends Listener {
    */
   readonly prompt = '🔨 BASHA > '
 
+  /**
+   * Output from entering the last Bash input.
+   *
+   * Used to buffer output from the pseudo-terminal.
+   */
   private output = ''
 
+  /**
+   * Is Bash ready for more input?
+   */
   private isReady = false
 
+  /**
+   * Function to call when Bash is ready
+   */
   private whenReady?: () => void
 
+  /**
+   * Flag to mute log errors when this interpreter
+   * is explicitly `stop()`ed
+   */
   private isStopping = false
 
   constructor(
@@ -46,6 +61,18 @@ export class BashInterpreter extends Listener {
     super(servers)
   }
 
+  /**
+   * Register this interpreter so that it can
+   * be discovered by other executors.
+   */
+  public async register(): Promise<void> {
+    StdioServer.register('basha', await this.manifest())
+  }
+
+  /**
+   * @override Override of `Executor.manifest` to
+   * define this interpreter's capabilities.
+   */
   public async manifest(): Promise<Manifest> {
     const params: JSONSchema7 = {
       required: ['node'],
@@ -75,6 +102,13 @@ export class BashInterpreter extends Listener {
     }
   }
 
+  /**
+   * @override Override of `Executor.call` that handles method calls.
+   *
+   * @description This is the main entry point method which dispatches
+   * to lower level methods for handling of actual execution and parsing
+   * of output.
+   */
   public async call<Type>(method: Method, params: Params = {}): Promise<Type> {
     if (method === Method.execute) {
       const { node } = params
@@ -109,7 +143,12 @@ export class BashInterpreter extends Listener {
     throw new CapabilityError(method, params)
   }
 
-  startBash(): pty.IPty {
+  /**
+   * Start a Bash shell process.
+   *
+   * This creates a pseudo-terminal.
+   */
+  public startBash(): pty.IPty {
     log.debug(`Starting bash`)
 
     const child = (this.child = pty.spawn(
@@ -194,15 +233,20 @@ export class BashInterpreter extends Listener {
   }
 }
 
-/* istanbul ignore next */
-if (require.main === module) {
-  const bash = new BashInterpreter()
-  if (process.argv[2] === 'register') {
-    bash
-      .manifest()
-      .then(manifest => StdioServer.register('basha', manifest))
-      .catch(error => log.error(error))
-  } else {
-    bash.start().catch(error => log.error(error))
-  }
+/**
+ * Create a `BashInterpreter` and run one of it's methods.
+ *
+ * Used by `npm postinstall` to register this interpreter,
+ * and below, to start it.
+ *
+ * @param method The name of the method to run
+ */
+export const run = (method: string): void => {
+  const instance = new BashInterpreter()
+  /* eslint-disable @typescript-eslint/unbound-method */
+  const func = method === 'register' ? instance.register : instance.start
+  func.apply(instance).catch(error => log.error(error))
 }
+
+// Default to running `start`
+if (require.main === module) run('start')
