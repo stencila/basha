@@ -29,8 +29,9 @@ executa repl bash
 
 ## Develop
 
-You can test Basha manually using the local install of `executa` in this package,
+You can test Basha manually using the local install of `executa` in this package. First, build and register the current version of Basha, so that Executa is able to find it,
 
 ```bash
+npm run register
 npx executa repl bash
 ```

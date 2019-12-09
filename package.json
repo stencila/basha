@@ -18,6 +18,7 @@
     "serve": "ts-node index",
     "build": "tsc --project tsconfig.prod.json",
     "docs": "typedoc --mode file src/*.ts",
+    "register": "npm run build && npm run postinstall",
     "make": "npm run lint && npm run test && npm run build && npm run docs",
     "prepack": "npm run make"
   },
