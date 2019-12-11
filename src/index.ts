@@ -3,12 +3,12 @@ import {
   JSONSchema7,
   Listener,
   logga,
-  Manifest,
   Method,
   Params,
   schema,
   Server,
-  StdioServer
+  StdioServer,
+  Capabilities
 } from '@stencila/executa'
 import * as pty from 'node-pty'
 
@@ -61,7 +61,7 @@ export class BashInterpreter extends Listener {
       new StdioServer({ command: 'node', args: [__filename] })
     ]
   ) {
-    super(servers)
+    super('ba', servers)
   }
 
   /**
@@ -73,10 +73,10 @@ export class BashInterpreter extends Listener {
   }
 
   /**
-   * @override Override of `Executor.manifest` to
+   * @override Override of `Executor.capabilities` to
    * define this interpreter's capabilities.
    */
-  public async manifest(): Promise<Manifest> {
+  public capabilities(): Promise<Capabilities> {
     const params: JSONSchema7 = {
       required: ['node'],
       properties: {
@@ -96,13 +96,11 @@ export class BashInterpreter extends Listener {
         }
       }
     }
-    return {
-      addresses: await this.addresses(),
-      capabilities: {
-        compile: params,
-        execute: params
-      }
-    }
+    return Promise.resolve({
+      manifest: true,
+      compile: params,
+      execute: params
+    })
   }
 
   /**
@@ -285,4 +283,8 @@ export const run = (method: string): void => {
 }
 
 // Default to running `start`
-if (require.main === module) run('start')
+if (require.main === module) {
+  let command = process.argv[2]
+  if (command === undefined) command = 'start'
+  run(command)
+}

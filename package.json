@@ -9,16 +9,15 @@
     "dist"
   ],
   "scripts": {
-    "postinstall": "node -e \"try {require('./dist').run('register')} catch {}\"",
     "lint": "eslint 'src/*.ts' --fix",
     "format": "npx prettier --write '**/*.{md,ts}'",
     "test": "jest --runInBand --forceExit",
     "test:watch": "jest --watch",
     "test:cover": "jest  --runInBand --forceExit --collectCoverage",
-    "serve": "ts-node index",
+    "serve": "ts-node src serve",
+    "register": "ts-node src register",
     "build": "tsc --project tsconfig.prod.json",
     "docs": "typedoc --mode file src/*.ts",
-    "register": "npm run build && npm run postinstall",
     "make": "npm run lint && npm run test && npm run build && npm run docs",
     "prepack": "npm run make"
   },
@@ -42,7 +41,7 @@
   },
   "homepage": "https://github.com/stencila/basha#readme",
   "dependencies": {
-    "@stencila/executa": "^1.0.0",
+    "@stencila/executa": "^1.2.0",
     "node-pty": "^0.9.0"
   },
   "devDependencies": {

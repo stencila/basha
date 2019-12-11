@@ -21,7 +21,13 @@ Windows is [not yet supported](https://github.com/stencila/basha/issues/2).
 
 ## Use
 
-If you have [`executa`](https://github.com/stencila/executa) installed globally then you can run it using the `repl` command and specifying `bash` as the starting language,
+Register Basha so that it can be discovered by other executors on your machine,
+
+```bash
+basha register
+```
+
+If you have [`executa`](https://github.com/stencila/executa) installed globally then you can then run it using the `repl` command and specifying `bash` as the starting language,
 
 ```bash
 executa repl bash
