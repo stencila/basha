@@ -15,7 +15,7 @@
     "test:watch": "jest --watch",
     "test:cover": "jest  --runInBand --forceExit --collectCoverage",
     "serve": "ts-node src serve",
-    "register": "ts-node src register",
+    "register": "npm run build && node dist register",
     "build": "tsc --project tsconfig.prod.json",
     "docs": "typedoc --mode file src/*.ts",
     "make": "npm run lint && npm run test && npm run build && npm run docs",
