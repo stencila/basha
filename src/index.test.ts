@@ -12,6 +12,10 @@ afterEach(async () => {
   await bash.stop()
 })
 
+test('register', async () => {
+  expect(await bash.register()).toBeUndefined()
+})
+
 describe('executeCode', () => {
   // Commands that succeed
   test('commands: ok', async () => {
@@ -62,7 +66,7 @@ Hello 3 times`)
 })
 
 describe('execute', () => {
-  test('ok', async () => {
+  test('code chunk', async () => {
     const chunk = schema.codeChunk('echo \'{"a":1}\'', {
       programmingLanguage: 'bash'
     })
@@ -72,7 +76,17 @@ describe('execute', () => {
     expect(errors).toBeUndefined()
   })
 
-  test('parallel requests', async () => {
+  test('code expression', async () => {
+    const chunk = schema.codeExpression('echo \'{"a":1}\'', {
+      programmingLanguage: 'bash'
+    })
+    const executed = await bash.execute(chunk)
+    const { output, errors } = executed
+    expect(output).toEqual({ a: 1 })
+    expect(errors).toBeUndefined()
+  })
+
+  test('parallel code chunks', async () => {
     // Should handle parallel requests
 
     // Make two requests to execute
