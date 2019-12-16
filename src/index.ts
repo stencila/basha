@@ -8,6 +8,7 @@ import {
   StdioServer,
   Capabilities
 } from '@stencila/executa'
+import AsyncLock from 'async-lock'
 import * as pty from 'node-pty'
 import { performance } from 'perf_hooks'
 
@@ -43,6 +44,12 @@ export class BashInterpreter extends Listener {
    * Is Bash ready for more input?
    */
   private isReady = false
+
+  /**
+   * A lock to prevent async event loops from attempting to enter
+   * code into the terminal at the same time.
+   */
+  private lock = new AsyncLock()
 
   /**
    * Function to call when Bash is ready
@@ -188,28 +195,32 @@ export class BashInterpreter extends Listener {
    * @param code Code to enter.
    * @returns A promise resolving to the output.
    */
-  public enterCode(code: string): Promise<string> {
-    const terminal =
-      this.terminal === undefined ? this.startBash() : this.terminal
-    const input = code + '\r'
-    const enter = (resolve: (output: string) => void): void => {
-      this.output = ''
-      this.isReady = false
-      this.whenReady = () => {
-        let output = this.output
-        // Remove the echoed input from start (including return)
-        if (output.startsWith(input)) output = output.slice(input.length + 1)
-        // Remove any carriage returns
-        output = output.replace(/\r/g, '')
-        // Remove the newline from end
-        if (output.endsWith('\n')) output = output.slice(0, -1)
-        resolve(output)
+  public async enterCode(code: string): Promise<string> {
+    return this.lock.acquire('terminal', () => {
+      const terminal =
+        this.terminal === undefined ? this.startBash() : this.terminal
+      const input = code + '\r'
+      const enter = (resolve: (output: string) => void): void => {
+        this.output = ''
+        this.isReady = false
+        this.whenReady = () => {
+          let output = this.output
+          // Remove the echoed input from start (including return)
+          if (output.startsWith(input)) output = output.slice(input.length + 1)
+          // Remove any carriage returns
+          output = output.replace(/\r/g, '')
+          // Remove the newline from end
+          if (output.endsWith('\n')) output = output.slice(0, -1)
+          resolve(output)
+        }
+        terminal.write(input)
       }
-      terminal.write(input)
-    }
-    return this.isReady
-      ? new Promise(resolve => enter(resolve))
-      : new Promise(resolve => (this.whenReady = () => enter(resolve)))
+      return this.isReady
+        ? new Promise<string>(resolve => enter(resolve))
+        : new Promise<string>(
+            resolve => (this.whenReady = () => enter(resolve))
+          )
+    })
   }
 
   /**

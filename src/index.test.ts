@@ -72,6 +72,27 @@ describe('execute', () => {
     expect(errors).toBeUndefined()
   })
 
+  test('parallel requests', async () => {
+    // Should handle parallel requests
+
+    // Make two requests to execute
+    const p1 = bash.execute(
+      schema.codeChunk('VAR=first', {
+        programmingLanguage: 'bash'
+      })
+    )
+    const p2 = bash.execute(
+      schema.codeChunk('echo $VAR', {
+        programmingLanguage: 'bash'
+      })
+    )
+
+    // Wait for them and check that the second ran after the first
+    await p1
+    const { outputs } = await p2
+    expect(outputs).toEqual(['first'])
+  })
+
   test('errors', async () => {
     const chunk = schema.codeChunk('foo', { programmingLanguage: 'bash' })
     const executed = await bash.execute(chunk)
