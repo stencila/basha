@@ -61,24 +61,20 @@ Hello 3 times`)
   })
 })
 
-describe('call', () => {
-  test('execute: ok', async () => {
+describe('execute', () => {
+  test('ok', async () => {
     const chunk = schema.codeChunk('echo \'{"a":1}\'', {
       programmingLanguage: 'bash'
     })
-    const executed = await bash.call<schema.CodeChunk>(Method.execute, {
-      node: chunk
-    })
+    const executed = await bash.execute(chunk)
     const { outputs, errors } = executed
     expect(outputs).toEqual([{ a: 1 }])
     expect(errors).toBeUndefined()
   })
 
-  test('execute: errors', async () => {
+  test('errors', async () => {
     const chunk = schema.codeChunk('foo', { programmingLanguage: 'bash' })
-    const executed = await bash.call<schema.CodeChunk>(Method.execute, {
-      node: chunk
-    })
+    const executed = await bash.execute(chunk)
     const { outputs, errors } = executed
     expect(outputs).toBeUndefined()
     expect(errors).toEqual([
@@ -86,19 +82,30 @@ describe('call', () => {
     ])
   })
 
-  test('execute: incapable', async () => {
+  test('duration', async () => {
+    const { duration: duration1 } = await bash.execute(
+      schema.codeChunk('sleep 0.1', { programmingLanguage: 'bash' })
+    )
+    expect(duration1).toBeGreaterThanOrEqual(0.1)
+    expect(duration1).toBeLessThanOrEqual(0.2)
+
+    const { duration: duration2 } = await bash.execute(
+      schema.codeChunk('sleep 0.2', { programmingLanguage: 'bash' })
+    )
+    expect(duration2).toBeGreaterThanOrEqual(0.2)
+    expect(duration2).toBeLessThanOrEqual(0.3)
+  })
+
+  // prettier-ignore
+  test('incapable', async () => {
     await expect(
-      bash.call<schema.CodeChunk>(Method.execute, { node: null })
+      bash.execute(null)
     ).rejects.toThrow(CapabilityError)
     await expect(
-      bash.call<schema.CodeChunk>(Method.execute, {
-        node: schema.codeChunk('')
-      })
+      bash.execute(schema.codeChunk(''))
     ).rejects.toThrow(CapabilityError)
     await expect(
-      bash.call<schema.CodeChunk>(Method.execute, {
-        node: schema.codeChunk('', { programmingLanguage: 'foo' })
-      })
+      bash.execute(schema.codeChunk('', { programmingLanguage: 'foo' }))
     ).rejects.toThrow(CapabilityError)
   })
 })

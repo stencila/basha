@@ -3,14 +3,13 @@ import {
   JSONSchema7,
   Listener,
   logga,
-  Method,
-  Params,
   schema,
   Server,
   StdioServer,
   Capabilities
 } from '@stencila/executa'
 import * as pty from 'node-pty'
+import { performance } from 'perf_hooks'
 
 const log = logga.getLogger('basha')
 
@@ -104,42 +103,40 @@ export class BashInterpreter extends Listener {
   }
 
   /**
-   * @override Override of `Executor.call` that handles method calls.
+   * @override Override of `Executor.execute` that executes Bash code.
    *
-   * @description This is the main entry point method which dispatches
-   * to lower level methods for handling of actual execution and parsing
-   * of output.
+   * Calculates the duration of the execution to the nearest microsecond.
    */
-  public async call<Type>(method: Method, params: Params = {}): Promise<Type> {
-    if (method === Method.execute) {
-      const { node } = params
-      if (schema.isA('CodeChunk', node) || schema.isA('CodeExpression', node)) {
-        const { programmingLanguage = '', text } = node
-        if (
-          typeof text === 'string' &&
-          this.programmingLanguages.includes(programmingLanguage)
-        ) {
-          let output
-          let errors
-          try {
-            output = await this.executeCode(text)
-          } catch (error) {
-            const { message } = error
-            errors = [schema.codeError('execute', { message })]
-          }
-
-          let executed
-          if (schema.isA('CodeChunk', node)) {
-            const outputs = output !== undefined ? [output] : undefined
-            executed = { ...node, outputs, errors }
-          } else {
-            executed = { ...node, output, errors }
-          }
-          return (executed as unknown) as Type
+  public async execute<Type>(node: Type): Promise<Type> {
+    if (schema.isA('CodeChunk', node) || schema.isA('CodeExpression', node)) {
+      const { programmingLanguage = '', text } = node
+      if (
+        typeof text === 'string' &&
+        this.programmingLanguages.includes(programmingLanguage)
+      ) {
+        let output
+        let errors
+        let duration
+        try {
+          const before = performance.now()
+          output = await this.executeCode(text)
+          duration = Math.round((performance.now() - before) * 1e3) / 1e6
+        } catch (error) {
+          const { message } = error
+          errors = [schema.codeError('execute', { message })]
         }
+
+        let executed
+        if (schema.isA('CodeChunk', node)) {
+          const outputs = output !== undefined ? [output] : undefined
+          executed = { ...node, outputs, errors, duration }
+        } else {
+          executed = { ...node, output, errors }
+        }
+        return executed
       }
     }
-    throw new CapabilityError(method, params)
+    throw new CapabilityError('execute', { node })
   }
 
   /**
