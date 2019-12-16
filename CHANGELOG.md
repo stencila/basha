@@ -1,3 +1,15 @@
+# [0.2.0](https://github.com/stencila/basha/compare/v0.1.2...v0.2.0) (2019-12-16)
+
+
+### Bug Fixes
+
+* **Execute:** Prevent parrallel async requests from clashing ([90765be](https://github.com/stencila/basha/commit/90765be608709d4445fc4e263d57b190bc611404))
+
+
+### Features
+
+* **Execute:** Calculate duration of execution ([a3e196b](https://github.com/stencila/basha/commit/a3e196bddfd63fa5d20f07fe4a177c659178ef38))
+
 ## [0.1.2](https://github.com/stencila/basha/compare/v0.1.1...v0.1.2) (2019-12-11)
 
 
