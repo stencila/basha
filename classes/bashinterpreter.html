@@ -95,6 +95,7 @@
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="bashinterpreter.html#id" class="tsd-kind-icon">id</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="bashinterpreter.html#isready" class="tsd-kind-icon">is<wbr>Ready</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="bashinterpreter.html#isstopping" class="tsd-kind-icon">is<wbr>Stopping</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="bashinterpreter.html#lock" class="tsd-kind-icon">lock</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="bashinterpreter.html#output" class="tsd-kind-icon">output</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="bashinterpreter.html#programminglanguages" class="tsd-kind-icon">programming<wbr>Languages</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="bashinterpreter.html#prompt" class="tsd-kind-icon">prompt</a></li>
@@ -109,14 +110,14 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="bashinterpreter.html#addresses" class="tsd-kind-icon">addresses</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited"><a href="bashinterpreter.html#begin" class="tsd-kind-icon">begin</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited"><a href="bashinterpreter.html#build" class="tsd-kind-icon">build</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-overwrite"><a href="bashinterpreter.html#call" class="tsd-kind-icon">call</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited"><a href="bashinterpreter.html#call" class="tsd-kind-icon">call</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="bashinterpreter.html#capabilities" class="tsd-kind-icon">capabilities</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited"><a href="bashinterpreter.html#compile" class="tsd-kind-icon">compile</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="bashinterpreter.html#decode" class="tsd-kind-icon">decode</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="bashinterpreter.html#encode" class="tsd-kind-icon">encode</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited"><a href="bashinterpreter.html#end" class="tsd-kind-icon">end</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="bashinterpreter.html#entercode" class="tsd-kind-icon">enter<wbr>Code</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited"><a href="bashinterpreter.html#execute" class="tsd-kind-icon">execute</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-overwrite"><a href="bashinterpreter.html#execute" class="tsd-kind-icon">execute</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="bashinterpreter.html#executecode" class="tsd-kind-icon">execute<wbr>Code</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="bashinterpreter.html#manifest" class="tsd-kind-icon">manifest</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="bashinterpreter.html#notified" class="tsd-kind-icon">notified</a></li>
@@ -145,7 +146,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides Listener.__constructor</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/stencila/basha/blob/103f5ec/src/index.ts#L57">src/index.ts:57</a></li>
+									<li>Defined in <a href="https://github.com/stencila/basha/blob/b9abb69/src/index.ts#L63">src/index.ts:63</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -186,7 +187,7 @@
 					<div class="tsd-signature tsd-kind-icon">is<wbr>Ready<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/stencila/basha/blob/103f5ec/src/index.ts#L46">src/index.ts:46</a></li>
+							<li>Defined in <a href="https://github.com/stencila/basha/blob/b9abb69/src/index.ts#L46">src/index.ts:46</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -201,7 +202,7 @@
 					<div class="tsd-signature tsd-kind-icon">is<wbr>Stopping<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/stencila/basha/blob/103f5ec/src/index.ts#L57">src/index.ts:57</a></li>
+							<li>Defined in <a href="https://github.com/stencila/basha/blob/b9abb69/src/index.ts#L63">src/index.ts:63</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -212,12 +213,28 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="lock" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> lock</h3>
+					<div class="tsd-signature tsd-kind-icon">lock<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">AsyncLock</span><span class="tsd-signature-symbol"> =&nbsp;new AsyncLock()</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/stencila/basha/blob/b9abb69/src/index.ts#L52">src/index.ts:52</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>A lock to prevent async event loops from attempting to enter
+							code into the terminal at the same time.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="output" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> output</h3>
 					<div class="tsd-signature tsd-kind-icon">output<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/stencila/basha/blob/103f5ec/src/index.ts#L41">src/index.ts:41</a></li>
+							<li>Defined in <a href="https://github.com/stencila/basha/blob/b9abb69/src/index.ts#L41">src/index.ts:41</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -233,7 +250,7 @@
 					<div class="tsd-signature tsd-kind-icon">programming<wbr>Languages<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[&#x27;bash&#x27;, &#x27;sh&#x27;]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/stencila/basha/blob/103f5ec/src/index.ts#L22">src/index.ts:22</a></li>
+							<li>Defined in <a href="https://github.com/stencila/basha/blob/b9abb69/src/index.ts#L22">src/index.ts:22</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -249,7 +266,7 @@
 					<div class="tsd-signature tsd-kind-icon">prompt<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"🔨 BASHA &gt; "</span><span class="tsd-signature-symbol"> =&nbsp;&quot;🔨 BASHA &gt; &quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/stencila/basha/blob/103f5ec/src/index.ts#L34">src/index.ts:34</a></li>
+							<li>Defined in <a href="https://github.com/stencila/basha/blob/b9abb69/src/index.ts#L34">src/index.ts:34</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -283,7 +300,7 @@
 					<div class="tsd-signature tsd-kind-icon">terminal<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">pty.IPty</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/stencila/basha/blob/103f5ec/src/index.ts#L27">src/index.ts:27</a></li>
+							<li>Defined in <a href="https://github.com/stencila/basha/blob/b9abb69/src/index.ts#L27">src/index.ts:27</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -298,7 +315,7 @@
 					<div class="tsd-signature tsd-kind-icon">when<wbr>Ready<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/stencila/basha/blob/103f5ec/src/index.ts#L51">src/index.ts:51</a></li>
+							<li>Defined in <a href="https://github.com/stencila/basha/blob/b9abb69/src/index.ts#L57">src/index.ts:57</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -426,31 +443,27 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-overwrite">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited">
 					<a name="call" class="tsd-anchor"></a>
 					<h3>call</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">call&lt;Type&gt;<span class="tsd-signature-symbol">(</span>method<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Method</span>, params<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Params</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Type</span><span class="tsd-signature-symbol">&gt;</span></li>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">call&lt;Type&gt;<span class="tsd-signature-symbol">(</span>method<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Method</span>, params<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Params</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Type</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Overrides Executor.call</p>
+								<p>Inherited from Executor.call</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/stencila/basha/blob/103f5ec/src/index.ts#L113">src/index.ts:113</a></li>
+									<li>Defined in node_modules/@stencila/executa/dist/lib/base/Executor.d.ts:218</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
-								<dl class="tsd-comment-tags">
-									<dt>override</dt>
-									<dd><p>Override of <code>Executor.call</code> that handles method calls.</p>
-									</dd>
-									<dt>description</dt>
-									<dd><p>This is the main entry point method which dispatches
-											to lower level methods for handling of actual execution and parsing
-										of output.</p>
-									</dd>
-								</dl>
+								<div class="lead">
+									<p>Call one of the above methods.</p>
+								</div>
+								<p>Since this base executor, has no capabilities, this method
+									simply throws a <code>CapabilityError</code>. Derived classes, may
+								override this method, and /or one of the methods above.</p>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -462,9 +475,15 @@
 							<ul class="tsd-parameters">
 								<li>
 									<h5>method: <span class="tsd-signature-type">Method</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The name of the method</p>
+									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> params: <span class="tsd-signature-type">Params</span><span class="tsd-signature-symbol"> =&nbsp;{}</span></h5>
+									<h5>params: <span class="tsd-signature-type">Params</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Values of parameters (i.e. arguments)</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Type</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -482,7 +501,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides Executor.capabilities</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/stencila/basha/blob/103f5ec/src/index.ts#L79">src/index.ts:79</a></li>
+									<li>Defined in <a href="https://github.com/stencila/basha/blob/b9abb69/src/index.ts#L85">src/index.ts:85</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -669,7 +688,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/stencila/basha/blob/103f5ec/src/index.ts#L194">src/index.ts:194</a></li>
+									<li>Defined in <a href="https://github.com/stencila/basha/blob/b9abb69/src/index.ts#L198">src/index.ts:198</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -692,54 +711,41 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-overwrite">
 					<a name="execute" class="tsd-anchor"></a>
 					<h3>execute</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">execute&lt;Type&gt;<span class="tsd-signature-symbol">(</span>node<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Type</span>, session<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">schema.SoftwareSession</span>, claims<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Claims</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Type</span><span class="tsd-signature-symbol">&gt;</span></li>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-overwrite">
+						<li class="tsd-signature tsd-kind-icon">execute&lt;Type&gt;<span class="tsd-signature-symbol">(</span>node<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Type</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Type</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from Executor.execute</p>
+								<p>Overrides Executor.execute</p>
 								<ul>
-									<li>Defined in node_modules/@stencila/executa/dist/lib/base/Executor.d.ts:181</li>
+									<li>Defined in <a href="https://github.com/stencila/basha/blob/b9abb69/src/index.ts#L117">src/index.ts:117</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Execute a <code>Node</code>.</p>
-								</div>
+								<dl class="tsd-comment-tags">
+									<dt>override</dt>
+									<dd><p>Override of <code>Executor.execute</code> that executes Bash code.</p>
+										<p>Calculates the duration of the execution to the nearest microsecond.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
 								<li>
-									<h4>Type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">schema.Node</span></h4>
+									<h4>Type</h4>
 								</li>
 							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>node: <span class="tsd-signature-type">Type</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>The node to execute</p>
-									</div>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> session: <span class="tsd-signature-type">schema.SoftwareSession</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>The session that the node will be executed in</p>
-									</div>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> claims: <span class="tsd-signature-type">Claims</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>The <code>Claims</code> made for the call</p>
-									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Type</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>The node, with updated properties, after it has been executed</p>
 						</li>
 					</ul>
 				</section>
@@ -753,7 +759,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/stencila/basha/blob/103f5ec/src/index.ts#L228">src/index.ts:228</a></li>
+									<li>Defined in <a href="https://github.com/stencila/basha/blob/b9abb69/src/index.ts#L236">src/index.ts:236</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -906,7 +912,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/stencila/basha/blob/103f5ec/src/index.ts#L246">src/index.ts:246</a></li>
+									<li>Defined in <a href="https://github.com/stencila/basha/blob/b9abb69/src/index.ts#L254">src/index.ts:254</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -941,7 +947,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/stencila/basha/blob/103f5ec/src/index.ts#L71">src/index.ts:71</a></li>
+									<li>Defined in <a href="https://github.com/stencila/basha/blob/b9abb69/src/index.ts#L77">src/index.ts:77</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1026,7 +1032,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/stencila/basha/blob/103f5ec/src/index.ts#L152">src/index.ts:152</a></li>
+									<li>Defined in <a href="https://github.com/stencila/basha/blob/b9abb69/src/index.ts#L156">src/index.ts:156</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1052,7 +1058,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides Listener.stop</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/stencila/basha/blob/103f5ec/src/index.ts#L258">src/index.ts:258</a></li>
+									<li>Defined in <a href="https://github.com/stencila/basha/blob/b9abb69/src/index.ts#L266">src/index.ts:266</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1097,6 +1103,9 @@
 								<a href="bashinterpreter.html#isstopping" class="tsd-kind-icon">is<wbr>Stopping</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="bashinterpreter.html#lock" class="tsd-kind-icon">lock</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="bashinterpreter.html#output" class="tsd-kind-icon">output</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
@@ -1123,7 +1132,7 @@
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited">
 								<a href="bashinterpreter.html#build" class="tsd-kind-icon">build</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-overwrite">
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited">
 								<a href="bashinterpreter.html#call" class="tsd-kind-icon">call</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
@@ -1144,7 +1153,7 @@
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="bashinterpreter.html#entercode" class="tsd-kind-icon">enter<wbr>Code</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited">
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-overwrite">
 								<a href="bashinterpreter.html#execute" class="tsd-kind-icon">execute</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
