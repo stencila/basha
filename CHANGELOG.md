@@ -1,3 +1,10 @@
+## [0.2.1](https://github.com/stencila/basha/compare/v0.2.0...v0.2.1) (2019-12-19)
+
+
+### Bug Fixes
+
+* Upgrade Executa ([9601a9a](https://github.com/stencila/basha/commit/9601a9a682c855082ecb2e2d557ec4cbc279b7b8))
+
 # [0.2.0](https://github.com/stencila/basha/compare/v0.1.2...v0.2.0) (2019-12-16)
 
 
