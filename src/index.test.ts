@@ -4,13 +4,18 @@ import { Basha } from '.'
 // Start a new interpreter before each test
 // and stop it after each one to ensure that
 // tests do not hang if they fail.
-let basha = new Basha()
+let basha: Basha
 beforeEach(() => {
   basha = new Basha()
 })
 afterEach(async () => {
   await basha.stop()
 })
+
+const chunk = (text: string): schema.CodeChunk =>
+  schema.codeChunk(text, {
+    programmingLanguage: 'bash'
+  })
 
 test('manifest', async () => {
   await expect(basha.manifest()).resolves.not.toThrow()
@@ -144,6 +149,44 @@ describe('execute', () => {
     await expect(
       basha.execute(schema.codeChunk('', { programmingLanguage: 'foo' }))
     ).rejects.toThrow(CapabilityError)
+  })
+})
+
+describe('cancel', () => {
+  test('code chunk', async () => {
+    // Can't cancel anything other than a current request
+    expect(await basha.cancel('request-random')).toBe(false)
+
+    // Set a var to check that we have the same Bash
+    // session after cancelling
+    const chunk1 = await basha.execute(chunk('VAR=42'))
+
+    // Asynchronously execute a chunk that is meant to sleep for a while
+    const chunk2 = chunk('sleep 30')
+    basha
+      .execute(chunk2, undefined, undefined, 'request-2')
+      .then(chunk => {
+        // When it cancels it resolves with an error (due to non-zero exit code)
+        expect(chunk.outputs).toEqual(['^C'])
+      })
+      .catch(error => console.error(error))
+
+    // Wait a tiny amount for the previous chunk to finish
+    // writing it's input before we cancel it
+    await new Promise(resolve => setTimeout(resolve, 10))
+
+    // Now cancel the chunk
+    expect(await basha.cancel('request-2')).toBe(true)
+
+    const chunk3 = await basha.execute(
+      chunk('echo $VAR'),
+      undefined,
+      undefined,
+      'request-3'
+    )
+    expect(chunk3.outputs).toEqual([42])
+    // Can't cancel it because it is already completed
+    expect(await basha.cancel('request-3')).toBe(false)
   })
 })
 

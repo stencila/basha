@@ -8,7 +8,8 @@ import {
   Method,
   schema,
   Server,
-  StdioServer
+  StdioServer,
+  Claims
 } from '@stencila/executa'
 import AsyncLock from 'async-lock'
 import * as pty from 'node-pty'
@@ -64,6 +65,15 @@ export class Basha extends Listener {
    */
   private isStopping = false
 
+  /**
+   * The id of the current request.
+   *
+   * Used to enable cancellation of requests by
+   * checking that the request being cancelled is
+   * the current one.
+   */
+  protected currentRequest?: string
+
   constructor(
     servers: Server[] = [
       new StdioServer({ command: 'node', args: [__filename, 'start'] })
@@ -108,13 +118,20 @@ export class Basha extends Listener {
    *
    * Calculates the duration of the execution to the nearest microsecond.
    */
-  public async execute<Type>(node: Type): Promise<Type> {
+  public async execute<Type>(
+    node: Type,
+    session?: schema.SoftwareSession,
+    claims?: Claims,
+    request?: string
+  ): Promise<Type> {
     if (schema.isA('CodeChunk', node) || schema.isA('CodeExpression', node)) {
       const { programmingLanguage = '', text } = node
       if (
         typeof text === 'string' &&
         this.programmingLanguages.includes(programmingLanguage)
       ) {
+        this.currentRequest = request
+
         let output
         let errors
         let duration
@@ -127,6 +144,8 @@ export class Basha extends Listener {
           errors = [schema.codeError('RuntimeError', { message })]
         }
 
+        this.currentRequest = undefined
+
         let executed
         if (schema.isA('CodeChunk', node)) {
           const outputs = output !== undefined ? [output] : undefined
@@ -138,6 +157,27 @@ export class Basha extends Listener {
       }
     }
     throw new CapabilityError(undefined, Method.execute, { node })
+  }
+
+  /**
+   * @override Override of `Executor.cancel` that cancels the
+   * current request only.
+   */
+  public cancel(request: string): Promise<boolean> {
+    if (
+      this.terminal !== undefined &&
+      request !== undefined &&
+      request === this.currentRequest &&
+      !this.isReady
+    ) {
+      // Send the equivalent of Ctrl+C keypress to the terminal
+      // It this is pressed while there is no command running then Bash
+      // itself will exit.
+      log.debug('Interrupting the current process')
+      if (this.terminal !== undefined) this.terminal.write('\x03')
+      return Promise.resolve(true)
+    }
+    return Promise.resolve(false)
   }
 
   /**
@@ -195,8 +235,6 @@ export class Basha extends Listener {
         this.terminal === undefined ? this.startBash() : this.terminal
       const input = code + '\r'
       const enter = (resolve: (output: string) => void): void => {
-        this.output = ''
-        this.isReady = false
         this.whenReady = () => {
           let output = this.output
           // Remove the echoed input from start (including return)
@@ -208,6 +246,8 @@ export class Basha extends Listener {
           resolve(output)
         }
         terminal.write(input)
+        this.output = ''
+        this.isReady = false
       }
       return this.isReady
         ? new Promise<string>(resolve => enter(resolve))
