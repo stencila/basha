@@ -1,12 +1,14 @@
 import {
+  Capabilities,
   CapabilityError,
+  cli,
   JSONSchema7,
   Listener,
   logga,
+  Method,
   schema,
   Server,
-  StdioServer,
-  Capabilities
+  StdioServer
 } from '@stencila/executa'
 import AsyncLock from 'async-lock'
 import * as pty from 'node-pty'
@@ -14,7 +16,7 @@ import { performance } from 'perf_hooks'
 
 const log = logga.getLogger('basha')
 
-export class BashInterpreter extends Listener {
+export class Basha extends Listener {
   /**
    * Programming language names supported by this
    * interpreter.
@@ -64,18 +66,10 @@ export class BashInterpreter extends Listener {
 
   constructor(
     servers: Server[] = [
-      new StdioServer({ command: 'node', args: [__filename] })
+      new StdioServer({ command: 'node', args: [__filename, 'start'] })
     ]
   ) {
     super('ba', servers)
-  }
-
-  /**
-   * Register this interpreter so that it can
-   * be discovered by other executors.
-   */
-  public async register(): Promise<void> {
-    StdioServer.register('basha', await this.manifest())
   }
 
   /**
@@ -130,7 +124,7 @@ export class BashInterpreter extends Listener {
           duration = Math.round((performance.now() - before) * 1e3) / 1e6
         } catch (error) {
           const { message } = error
-          errors = [schema.codeError('execute', { message })]
+          errors = [schema.codeError('RuntimeError', { message })]
         }
 
         let executed
@@ -143,7 +137,7 @@ export class BashInterpreter extends Listener {
         return executed
       }
     }
-    throw new CapabilityError('execute', { node })
+    throw new CapabilityError(undefined, Method.execute, { node })
   }
 
   /**
@@ -275,24 +269,6 @@ export class BashInterpreter extends Listener {
   }
 }
 
-/**
- * Create a `BashInterpreter` and run one of it's methods.
- *
- * Used by `npm postinstall` to register this interpreter,
- * and below, to start it.
- *
- * @param method The name of the method to run
- */
-export const run = (method: string): void => {
-  const instance = new BashInterpreter()
-  /* eslint-disable @typescript-eslint/unbound-method */
-  const func = method === 'register' ? instance.register : instance.start
-  func.apply(instance).catch(error => log.error(error))
-}
-
-// Default to running `start`
-if (require.main === module) {
-  let command = process.argv[2]
-  if (command === undefined) command = 'start'
-  run(command)
-}
+// istanbul ignore next
+if (require.main === module)
+  cli.main(new Basha()).catch(error => log.error(error))

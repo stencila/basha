@@ -27,10 +27,10 @@ Register Basha so that it can be discovered by other executors on your machine,
 basha register
 ```
 
-If you have [`executa`](https://github.com/stencila/executa) installed globally then you can then run it using the `repl` command and specifying `bash` as the starting language,
+If you have [`executa`](https://github.com/stencila/executa) installed globally, you can then run Basha using the `execute` command and specifying `bash` as the starting language,
 
 ```bash
-executa repl bash
+executa execute --repl --lang bash
 ```
 
 ## Develop
@@ -39,5 +39,5 @@ You can test Basha manually using the local install of `executa` in this package
 
 ```bash
 npm run register
-npx executa repl bash
+npx executa execute --repl --lang bash
 ```

@@ -1,50 +1,50 @@
-import { schema, Method, CapabilityError } from '@stencila/executa'
-import { BashInterpreter } from '.'
+import { schema, CapabilityError } from '@stencila/executa'
+import { Basha } from '.'
 
 // Start a new interpreter before each test
 // and stop it after each one to ensure that
 // tests do not hang if they fail.
-let bash = new BashInterpreter()
+let basha = new Basha()
 beforeEach(() => {
-  bash = new BashInterpreter()
+  basha = new Basha()
 })
 afterEach(async () => {
-  await bash.stop()
+  await basha.stop()
 })
 
-test('register', async () => {
-  expect(await bash.register()).toBeUndefined()
+test('manifest', async () => {
+  await expect(basha.manifest()).resolves.not.toThrow()
 })
 
 describe('executeCode', () => {
   // Commands that succeed
   test('commands: ok', async () => {
-    expect(await bash.executeCode('echo "Hello world!"')).toBe('Hello world!')
-    expect(await bash.executeCode("date --date='@100000000' -u -I")).toBe(
+    expect(await basha.executeCode('echo "Hello world!"')).toBe('Hello world!')
+    expect(await basha.executeCode("date --date='@100000000' -u -I")).toBe(
       '1973-03-03'
     )
   })
 
   // Commands that fail
   test('commands: bad', async () => {
-    await expect(bash.executeCode('foo')).rejects.toThrow(
+    await expect(basha.executeCode('foo')).rejects.toThrow(
       'bash: foo: command not found'
     )
-    await expect(bash.executeCode('cat foo.bar')).rejects.toThrow(
+    await expect(basha.executeCode('cat foo.bar')).rejects.toThrow(
       'cat: foo.bar: No such file or directory'
     )
   })
 
   // Setting and using variables
   test('variables', async () => {
-    expect(await bash.executeCode('VAR1=one')).toBe('')
-    expect(await bash.executeCode('echo $VAR1')).toBe('one')
+    expect(await basha.executeCode('VAR1=one')).toBe('')
+    expect(await basha.executeCode('echo $VAR1')).toBe('one')
   })
 
   // Control flow
   test('control flow', async () => {
     expect(
-      await bash.executeCode(`for i in 1 2 3
+      await basha.executeCode(`for i in 1 2 3
 do
   echo "Hello $i times"
 done`)
@@ -59,7 +59,7 @@ Hello 3 times`)
 
   // Syntax errors
   test('syntax errors', async () => {
-    await expect(bash.executeCode('for')).rejects.toThrow(
+    await expect(basha.executeCode('for')).rejects.toThrow(
       'bash: syntax error near unexpected token `newline'
     )
   })
@@ -70,7 +70,7 @@ describe('execute', () => {
     const chunk = schema.codeChunk('echo \'{"a":1}\'', {
       programmingLanguage: 'bash'
     })
-    const executed = await bash.execute(chunk)
+    const executed = await basha.execute(chunk)
     const { outputs, errors } = executed
     expect(outputs).toEqual([{ a: 1 }])
     expect(errors).toBeUndefined()
@@ -80,7 +80,7 @@ describe('execute', () => {
     const chunk = schema.codeExpression('echo \'{"a":1}\'', {
       programmingLanguage: 'bash'
     })
-    const executed = await bash.execute(chunk)
+    const executed = await basha.execute(chunk)
     const { output, errors } = executed
     expect(output).toEqual({ a: 1 })
     expect(errors).toBeUndefined()
@@ -90,12 +90,12 @@ describe('execute', () => {
     // Should handle parallel requests
 
     // Make two requests to execute
-    const p1 = bash.execute(
+    const p1 = basha.execute(
       schema.codeChunk('VAR=first', {
         programmingLanguage: 'bash'
       })
     )
-    const p2 = bash.execute(
+    const p2 = basha.execute(
       schema.codeChunk('echo $VAR', {
         programmingLanguage: 'bash'
       })
@@ -109,22 +109,24 @@ describe('execute', () => {
 
   test('errors', async () => {
     const chunk = schema.codeChunk('foo', { programmingLanguage: 'bash' })
-    const executed = await bash.execute(chunk)
+    const executed = await basha.execute(chunk)
     const { outputs, errors } = executed
     expect(outputs).toBeUndefined()
     expect(errors).toEqual([
-      schema.codeError('execute', { message: 'bash: foo: command not found' })
+      schema.codeError('RuntimeError', {
+        message: 'bash: foo: command not found'
+      })
     ])
   })
 
   test('duration', async () => {
-    const { duration: duration1 } = await bash.execute(
+    const { duration: duration1 } = await basha.execute(
       schema.codeChunk('sleep 0.1', { programmingLanguage: 'bash' })
     )
     expect(duration1).toBeGreaterThanOrEqual(0.1)
     expect(duration1).toBeLessThanOrEqual(0.2)
 
-    const { duration: duration2 } = await bash.execute(
+    const { duration: duration2 } = await basha.execute(
       schema.codeChunk('sleep 0.2', { programmingLanguage: 'bash' })
     )
     expect(duration2).toBeGreaterThanOrEqual(0.2)
@@ -134,22 +136,22 @@ describe('execute', () => {
   // prettier-ignore
   test('incapable', async () => {
     await expect(
-      bash.execute(null)
+      basha.execute(null)
     ).rejects.toThrow(CapabilityError)
     await expect(
-      bash.execute(schema.codeChunk(''))
+      basha.execute(schema.codeChunk(''))
     ).rejects.toThrow(CapabilityError)
     await expect(
-      bash.execute(schema.codeChunk('', { programmingLanguage: 'foo' }))
+      basha.execute(schema.codeChunk('', { programmingLanguage: 'foo' }))
     ).rejects.toThrow(CapabilityError)
   })
 })
 
 test('exit handling', async () => {
-  expect(await bash.executeCode('VAR=1')).toEqual('')
-  expect(await bash.executeCode('echo $VAR')).toEqual(1)
-  expect(await bash.executeCode('exit')).toEqual('exit')
+  expect(await basha.executeCode('VAR=1')).toEqual('')
+  expect(await basha.executeCode('echo $VAR')).toEqual(1)
+  expect(await basha.executeCode('exit')).toEqual('exit')
   // Recovers by creating new bash process, but
   // the env var is no longer set
-  expect(await bash.executeCode('echo $VAR')).toEqual('')
+  expect(await basha.executeCode('echo $VAR')).toEqual('')
 })
