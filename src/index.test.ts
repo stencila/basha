@@ -30,6 +30,12 @@ describe('executeCode', () => {
     )
   })
 
+  // Commands that do not have any output
+  test('commands: no output', async () => {
+    expect(await basha.executeCode('VAR=value')).toBe(undefined)
+    expect(await basha.executeCode('sleep 0.1')).toBe(undefined)
+  })
+
   // Commands that fail
   test('commands: bad', async () => {
     await expect(basha.executeCode('foo')).rejects.toThrow(
@@ -42,7 +48,7 @@ describe('executeCode', () => {
 
   // Setting and using variables
   test('variables', async () => {
-    expect(await basha.executeCode('VAR1=one')).toBe('')
+    expect(await basha.executeCode('VAR1=one')).toBe(undefined)
     expect(await basha.executeCode('echo $VAR1')).toBe('one')
   })
 
@@ -191,7 +197,7 @@ describe('cancel', () => {
 })
 
 test('exit handling', async () => {
-  expect(await basha.executeCode('VAR=1')).toEqual('')
+  expect(await basha.executeCode('VAR=1')).toEqual(undefined)
   expect(await basha.executeCode('echo $VAR')).toEqual(1)
   expect(await basha.executeCode('exit')).toEqual('exit')
   // Recovers by creating new bash process, but
