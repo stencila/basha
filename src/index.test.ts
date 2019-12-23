@@ -161,7 +161,7 @@ describe('execute', () => {
 describe('cancel', () => {
   test('code chunk', async () => {
     // Can't cancel anything other than a current request
-    expect(await basha.cancel('request-random')).toBe(false)
+    expect(await basha.cancel('job-random')).toBe(false)
 
     // Set a var to check that we have the same Bash
     // session after cancelling
@@ -170,7 +170,7 @@ describe('cancel', () => {
     // Asynchronously execute a chunk that is meant to sleep for a while
     const chunk2 = chunk('sleep 30')
     basha
-      .execute(chunk2, undefined, undefined, 'request-2')
+      .execute(chunk2, undefined, undefined, 'job-2')
       .then(chunk => {
         // When it cancels it resolves with an error (due to non-zero exit code)
         expect(chunk.outputs).toEqual(['^C'])
@@ -182,17 +182,17 @@ describe('cancel', () => {
     await new Promise(resolve => setTimeout(resolve, 10))
 
     // Now cancel the chunk
-    expect(await basha.cancel('request-2')).toBe(true)
+    expect(await basha.cancel('job-2')).toBe(true)
 
     const chunk3 = await basha.execute(
       chunk('echo $VAR'),
       undefined,
       undefined,
-      'request-3'
+      'job-3'
     )
     expect(chunk3.outputs).toEqual([42])
     // Can't cancel it because it is already completed
-    expect(await basha.cancel('request-3')).toBe(false)
+    expect(await basha.cancel('job-3')).toBe(false)
   })
 })
 

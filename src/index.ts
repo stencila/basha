@@ -66,13 +66,13 @@ export class Basha extends Listener {
   private isStopping = false
 
   /**
-   * The id of the current request.
+   * The id of the current job.
    *
-   * Used to enable cancellation of requests by
-   * checking that the request being cancelled is
+   * Used to enable cancellation of jobs by
+   * checking that the job being cancelled is
    * the current one.
    */
-  protected currentRequest?: string
+  protected job?: string
 
   constructor(
     servers: Server[] = [
@@ -122,7 +122,7 @@ export class Basha extends Listener {
     node: Type,
     session?: schema.SoftwareSession,
     claims?: Claims,
-    request?: string
+    job?: string
   ): Promise<Type> {
     if (schema.isA('CodeChunk', node) || schema.isA('CodeExpression', node)) {
       const { programmingLanguage = '', text } = node
@@ -130,7 +130,7 @@ export class Basha extends Listener {
         typeof text === 'string' &&
         this.programmingLanguages.includes(programmingLanguage)
       ) {
-        this.currentRequest = request
+        this.job = job
 
         let output
         let errors
@@ -144,7 +144,7 @@ export class Basha extends Listener {
           errors = [schema.codeError('RuntimeError', { message })]
         }
 
-        this.currentRequest = undefined
+        this.job = undefined
 
         let executed
         if (schema.isA('CodeChunk', node)) {
@@ -161,13 +161,13 @@ export class Basha extends Listener {
 
   /**
    * @override Override of `Executor.cancel` that cancels the
-   * current request only.
+   * current job only.
    */
-  public cancel(request: string): Promise<boolean> {
+  public cancel(job: string): Promise<boolean> {
     if (
       this.terminal !== undefined &&
-      request !== undefined &&
-      request === this.currentRequest &&
+      job !== undefined &&
+      job === this.job &&
       !this.isReady
     ) {
       // Send the equivalent of Ctrl+C keypress to the terminal
