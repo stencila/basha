@@ -8,7 +8,8 @@ import {
   Method,
   schema,
   Server,
-  StdioServer
+  StdioServer,
+  Claims
 } from '@stencila/executa'
 import AsyncLock from 'async-lock'
 import * as pty from 'node-pty'
@@ -40,7 +41,7 @@ export class Basha extends Listener {
    *
    * Used to buffer output from the pseudo-terminal.
    */
-  private output = ''
+  private output?: string
 
   /**
    * Is Bash ready for more input?
@@ -63,6 +64,15 @@ export class Basha extends Listener {
    * is explicitly `stop()`ed
    */
   private isStopping = false
+
+  /**
+   * The id of the current job.
+   *
+   * Used to enable cancellation of jobs by
+   * checking that the job being cancelled is
+   * the current one.
+   */
+  protected job?: string
 
   constructor(
     servers: Server[] = [
@@ -99,7 +109,8 @@ export class Basha extends Listener {
     return Promise.resolve({
       manifest: true,
       compile: params,
-      execute: params
+      execute: params,
+      cancel: true
     })
   }
 
@@ -108,13 +119,20 @@ export class Basha extends Listener {
    *
    * Calculates the duration of the execution to the nearest microsecond.
    */
-  public async execute<Type>(node: Type): Promise<Type> {
+  public async execute<Type>(
+    node: Type,
+    session?: schema.SoftwareSession,
+    claims?: Claims,
+    job?: string
+  ): Promise<Type> {
     if (schema.isA('CodeChunk', node) || schema.isA('CodeExpression', node)) {
       const { programmingLanguage = '', text } = node
       if (
         typeof text === 'string' &&
         this.programmingLanguages.includes(programmingLanguage)
       ) {
+        this.job = job
+
         let output
         let errors
         let duration
@@ -127,6 +145,8 @@ export class Basha extends Listener {
           errors = [schema.codeError('RuntimeError', { message })]
         }
 
+        this.job = undefined
+
         let executed
         if (schema.isA('CodeChunk', node)) {
           const outputs = output !== undefined ? [output] : undefined
@@ -138,6 +158,27 @@ export class Basha extends Listener {
       }
     }
     throw new CapabilityError(undefined, Method.execute, { node })
+  }
+
+  /**
+   * @override Override of `Executor.cancel` that cancels the
+   * current job only.
+   */
+  public cancel(job: string): Promise<boolean> {
+    if (
+      this.terminal !== undefined &&
+      job !== undefined &&
+      job === this.job &&
+      !this.isReady
+    ) {
+      // Send the equivalent of Ctrl+C keypress to the terminal
+      // It this is pressed while there is no command running then Bash
+      // itself will exit.
+      log.debug('Interrupting the current process')
+      if (this.terminal !== undefined) this.terminal.write('\x03')
+      return Promise.resolve(true)
+    }
+    return Promise.resolve(false)
   }
 
   /**
@@ -164,12 +205,11 @@ export class Basha extends Listener {
     ))
 
     terminal.onData((data: string) => {
-      if (data.endsWith(this.prompt)) {
-        this.output += data.slice(0, -this.prompt.length)
+      if (this.output === undefined) this.output = data
+      else this.output += data
+      if (this.output.endsWith(this.prompt)) {
         this.isReady = true
         if (this.whenReady !== undefined) this.whenReady()
-      } else {
-        this.output += data
       }
     })
 
@@ -189,18 +229,28 @@ export class Basha extends Listener {
    * @param code Code to enter.
    * @returns A promise resolving to the output.
    */
-  public async enterCode(code: string): Promise<string> {
+  public async enterCode(code: string): Promise<string | undefined> {
     return this.lock.acquire('terminal', () => {
       const terminal =
         this.terminal === undefined ? this.startBash() : this.terminal
       const input = code + '\r'
-      const enter = (resolve: (output: string) => void): void => {
-        this.output = ''
-        this.isReady = false
+      const enter = (resolve: (output?: string) => void): void => {
         this.whenReady = () => {
           let output = this.output
+
+          // No terminal output so do not resolve a value
+          if (output === undefined) return resolve()
+
           // Remove the echoed input from start (including return)
           if (output.startsWith(input)) output = output.slice(input.length + 1)
+          // ...and the trailing prompt
+          if (output.endsWith(this.prompt))
+            output = output.slice(0, -this.prompt.length)
+
+          // If no output between input and next prompt
+          // do not resolve a value
+          if (output.length === 0) return resolve()
+
           // Remove any carriage returns
           output = output.replace(/\r/g, '')
           // Remove the newline from end
@@ -208,10 +258,12 @@ export class Basha extends Listener {
           resolve(output)
         }
         terminal.write(input)
+        this.output = undefined
+        this.isReady = false
       }
       return this.isReady
-        ? new Promise<string>(resolve => enter(resolve))
-        : new Promise<string>(
+        ? new Promise<string | undefined>(resolve => enter(resolve))
+        : new Promise<string | undefined>(
             resolve => (this.whenReady = () => enter(resolve))
           )
     })
@@ -227,9 +279,9 @@ export class Basha extends Listener {
    * @param code Code to execute
    * @returns A promise resolving to the output from the command.
    */
-  async executeCode(code: string): Promise<string> {
+  async executeCode(code: string): Promise<string | undefined> {
     const output = await this.enterCode(code)
-    const result = this.parseOutput(output)
+    const result = output !== undefined ? this.parseOutput(output) : undefined
     const exitCode = await this.enterCode('echo $?')
     if (exitCode === '0') return result
     else throw new Error(result)
