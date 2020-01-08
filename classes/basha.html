@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Basha | @stencila/basha</title>
+	<title>Basha | @stencila/basha - v0.3.0</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">@stencila/basha</a>
+					<a href="../index.html" class="title">@stencila/basha - v0.3.0</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -95,6 +95,7 @@
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="basha.html#id" class="tsd-kind-icon">id</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="basha.html#isready" class="tsd-kind-icon">is<wbr>Ready</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="basha.html#isstopping" class="tsd-kind-icon">is<wbr>Stopping</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="basha.html#job" class="tsd-kind-icon">job</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="basha.html#lock" class="tsd-kind-icon">lock</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="basha.html#output" class="tsd-kind-icon">output</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="basha.html#programminglanguages" class="tsd-kind-icon">programming<wbr>Languages</a></li>
@@ -111,6 +112,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited"><a href="basha.html#begin" class="tsd-kind-icon">begin</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited"><a href="basha.html#build" class="tsd-kind-icon">build</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited"><a href="basha.html#call" class="tsd-kind-icon">call</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="basha.html#cancel" class="tsd-kind-icon">cancel</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="basha.html#capabilities" class="tsd-kind-icon">capabilities</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited"><a href="basha.html#compile" class="tsd-kind-icon">compile</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="basha.html#decode" class="tsd-kind-icon">decode</a></li>
@@ -149,7 +151,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides Listener.__constructor</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/stencila/basha/blob/f20c7fe/src/index.ts#L65">src/index.ts:65</a></li>
+									<li>Defined in <a href="https://github.com/stencila/basha/blob/3aed9b9/src/index.ts#L75">src/index.ts:75</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -172,7 +174,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from Executor.id</p>
 						<ul>
-							<li>Defined in node_modules/@stencila/executa/dist/lib/base/Executor.d.ts:104</li>
+							<li>Defined in node_modules/@stencila/executa/dist/lib/base/Executor.d.ts:105</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -190,7 +192,7 @@
 					<div class="tsd-signature tsd-kind-icon">is<wbr>Ready<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/stencila/basha/blob/f20c7fe/src/index.ts#L48">src/index.ts:48</a></li>
+							<li>Defined in <a href="https://github.com/stencila/basha/blob/3aed9b9/src/index.ts#L49">src/index.ts:49</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -205,7 +207,7 @@
 					<div class="tsd-signature tsd-kind-icon">is<wbr>Stopping<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/stencila/basha/blob/f20c7fe/src/index.ts#L65">src/index.ts:65</a></li>
+							<li>Defined in <a href="https://github.com/stencila/basha/blob/3aed9b9/src/index.ts#L66">src/index.ts:66</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -215,13 +217,31 @@
 						</div>
 					</div>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+					<a name="job" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> <span class="tsd-flag ts-flagOptional">Optional</span> job</h3>
+					<div class="tsd-signature tsd-kind-icon">job<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/stencila/basha/blob/3aed9b9/src/index.ts#L75">src/index.ts:75</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The id of the current job.</p>
+						</div>
+						<p>Used to enable cancellation of jobs by
+							checking that the job being cancelled is
+						the current one.</p>
+					</div>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="lock" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> lock</h3>
 					<div class="tsd-signature tsd-kind-icon">lock<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">AsyncLock</span><span class="tsd-signature-symbol"> =&nbsp;new AsyncLock()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/stencila/basha/blob/f20c7fe/src/index.ts#L54">src/index.ts:54</a></li>
+							<li>Defined in <a href="https://github.com/stencila/basha/blob/3aed9b9/src/index.ts#L55">src/index.ts:55</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -233,11 +253,11 @@
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="output" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> output</h3>
-					<div class="tsd-signature tsd-kind-icon">output<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;&quot;</span></div>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> <span class="tsd-flag ts-flagOptional">Optional</span> output</h3>
+					<div class="tsd-signature tsd-kind-icon">output<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/stencila/basha/blob/f20c7fe/src/index.ts#L43">src/index.ts:43</a></li>
+							<li>Defined in <a href="https://github.com/stencila/basha/blob/3aed9b9/src/index.ts#L44">src/index.ts:44</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -253,7 +273,7 @@
 					<div class="tsd-signature tsd-kind-icon">programming<wbr>Languages<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[&#x27;bash&#x27;, &#x27;sh&#x27;]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/stencila/basha/blob/f20c7fe/src/index.ts#L24">src/index.ts:24</a></li>
+							<li>Defined in <a href="https://github.com/stencila/basha/blob/3aed9b9/src/index.ts#L25">src/index.ts:25</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -269,7 +289,7 @@
 					<div class="tsd-signature tsd-kind-icon">prompt<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"🔨 BASHA &gt; "</span><span class="tsd-signature-symbol"> =&nbsp;&quot;🔨 BASHA &gt; &quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/stencila/basha/blob/f20c7fe/src/index.ts#L36">src/index.ts:36</a></li>
+							<li>Defined in <a href="https://github.com/stencila/basha/blob/3aed9b9/src/index.ts#L37">src/index.ts:37</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -303,7 +323,7 @@
 					<div class="tsd-signature tsd-kind-icon">terminal<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">pty.IPty</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/stencila/basha/blob/f20c7fe/src/index.ts#L29">src/index.ts:29</a></li>
+							<li>Defined in <a href="https://github.com/stencila/basha/blob/3aed9b9/src/index.ts#L30">src/index.ts:30</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -318,7 +338,7 @@
 					<div class="tsd-signature tsd-kind-icon">when<wbr>Ready<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/stencila/basha/blob/f20c7fe/src/index.ts#L59">src/index.ts:59</a></li>
+							<li>Defined in <a href="https://github.com/stencila/basha/blob/3aed9b9/src/index.ts#L60">src/index.ts:60</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -371,7 +391,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Executor.begin</p>
 								<ul>
-									<li>Defined in node_modules/@stencila/executa/dist/lib/base/Executor.d.ts:199</li>
+									<li>Defined in node_modules/@stencila/executa/dist/lib/base/Executor.d.ts:201</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -424,7 +444,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Executor.build</p>
 								<ul>
-									<li>Defined in node_modules/@stencila/executa/dist/lib/base/Executor.d.ts:172</li>
+									<li>Defined in node_modules/@stencila/executa/dist/lib/base/Executor.d.ts:173</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -463,7 +483,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Executor.call</p>
 								<ul>
-									<li>Defined in node_modules/@stencila/executa/dist/lib/base/Executor.d.ts:247</li>
+									<li>Defined in node_modules/@stencila/executa/dist/lib/base/Executor.d.ts:257</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -503,6 +523,38 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+					<a name="cancel" class="tsd-anchor"></a>
+					<h3>cancel</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+						<li class="tsd-signature tsd-kind-icon">cancel<span class="tsd-signature-symbol">(</span>job<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Overrides Executor.cancel</p>
+								<ul>
+									<li>Defined in <a href="https://github.com/stencila/basha/blob/3aed9b9/src/index.ts#L167">src/index.ts:167</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<dl class="tsd-comment-tags">
+									<dt>override</dt>
+									<dd><p>Override of <code>Executor.cancel</code> that cancels the
+										current job only.</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>job: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
 					<a name="capabilities" class="tsd-anchor"></a>
 					<h3>capabilities</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
@@ -513,7 +565,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides Executor.capabilities</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/stencila/basha/blob/f20c7fe/src/index.ts#L79">src/index.ts:79</a></li>
+									<li>Defined in <a href="https://github.com/stencila/basha/blob/3aed9b9/src/index.ts#L89">src/index.ts:89</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -539,7 +591,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Executor.compile</p>
 								<ul>
-									<li>Defined in node_modules/@stencila/executa/dist/lib/base/Executor.d.ts:165</li>
+									<li>Defined in node_modules/@stencila/executa/dist/lib/base/Executor.d.ts:166</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -578,7 +630,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Executor.decode</p>
 								<ul>
-									<li>Defined in node_modules/@stencila/executa/dist/lib/base/Executor.d.ts:140</li>
+									<li>Defined in node_modules/@stencila/executa/dist/lib/base/Executor.d.ts:141</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -617,7 +669,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Executor.dispatch</p>
 								<ul>
-									<li>Defined in node_modules/@stencila/executa/dist/lib/base/Executor.d.ts:232</li>
+									<li>Defined in node_modules/@stencila/executa/dist/lib/base/Executor.d.ts:241</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -655,7 +707,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Executor.encode</p>
 								<ul>
-									<li>Defined in node_modules/@stencila/executa/dist/lib/base/Executor.d.ts:149</li>
+									<li>Defined in node_modules/@stencila/executa/dist/lib/base/Executor.d.ts:150</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -700,7 +752,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Executor.end</p>
 								<ul>
-									<li>Defined in node_modules/@stencila/executa/dist/lib/base/Executor.d.ts:207</li>
+									<li>Defined in node_modules/@stencila/executa/dist/lib/base/Executor.d.ts:209</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -738,13 +790,13 @@
 					<a name="entercode" class="tsd-anchor"></a>
 					<h3>enter<wbr>Code</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">enter<wbr>Code<span class="tsd-signature-symbol">(</span>code<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">enter<wbr>Code<span class="tsd-signature-symbol">(</span>code<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/stencila/basha/blob/f20c7fe/src/index.ts#L192">src/index.ts:192</a></li>
+									<li>Defined in <a href="https://github.com/stencila/basha/blob/3aed9b9/src/index.ts#L232">src/index.ts:232</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -762,7 +814,7 @@
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>A promise resolving to the output.</p>
 						</li>
 					</ul>
@@ -771,14 +823,14 @@
 					<a name="execute" class="tsd-anchor"></a>
 					<h3>execute</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">execute&lt;Type&gt;<span class="tsd-signature-symbol">(</span>node<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Type</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Type</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">execute&lt;Type&gt;<span class="tsd-signature-symbol">(</span>node<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Type</span>, session<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">schema.SoftwareSession</span>, claims<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Claims</span>, job<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Type</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Overrides Executor.execute</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/stencila/basha/blob/f20c7fe/src/index.ts#L111">src/index.ts:111</a></li>
+									<li>Defined in <a href="https://github.com/stencila/basha/blob/3aed9b9/src/index.ts#L122">src/index.ts:122</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -800,6 +852,15 @@
 								<li>
 									<h5>node: <span class="tsd-signature-type">Type</span></h5>
 								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> session: <span class="tsd-signature-type">schema.SoftwareSession</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> claims: <span class="tsd-signature-type">Claims</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> job: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
+								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Type</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
@@ -809,13 +870,13 @@
 					<a name="executecode" class="tsd-anchor"></a>
 					<h3>execute<wbr>Code</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">execute<wbr>Code<span class="tsd-signature-symbol">(</span>code<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">execute<wbr>Code<span class="tsd-signature-symbol">(</span>code<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/stencila/basha/blob/f20c7fe/src/index.ts#L230">src/index.ts:230</a></li>
+									<li>Defined in <a href="https://github.com/stencila/basha/blob/3aed9b9/src/index.ts#L282">src/index.ts:282</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -835,7 +896,7 @@
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>A promise resolving to the output from the command.</p>
 						</li>
 					</ul>
@@ -851,7 +912,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Executor.manifest</p>
 								<ul>
-									<li>Defined in node_modules/@stencila/executa/dist/lib/base/Executor.d.ts:132</li>
+									<li>Defined in node_modules/@stencila/executa/dist/lib/base/Executor.d.ts:133</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -882,7 +943,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Executor.notified</p>
 								<ul>
-									<li>Defined in node_modules/@stencila/executa/dist/lib/base/Executor.d.ts:264</li>
+									<li>Defined in node_modules/@stencila/executa/dist/lib/base/Executor.d.ts:274</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -968,7 +1029,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/stencila/basha/blob/f20c7fe/src/index.ts#L248">src/index.ts:248</a></li>
+									<li>Defined in <a href="https://github.com/stencila/basha/blob/3aed9b9/src/index.ts#L300">src/index.ts:300</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -997,14 +1058,14 @@
 					<a name="pipe" class="tsd-anchor"></a>
 					<h3>pipe</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">pipe<span class="tsd-signature-symbol">(</span>node<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">schema.Node</span>, calls<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-type">manifest</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">decode</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">encode</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">query</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">compile</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">build</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">execute</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">begin</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">end</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">pipe</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">Method</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">schema.Node</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">pipe<span class="tsd-signature-symbol">(</span>node<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">schema.Node</span>, calls<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-type">manifest</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">decode</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">encode</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">query</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">compile</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">build</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">execute</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">begin</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">end</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">pipe</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">cancel</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">Method</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">schema.Node</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Inherited from Executor.pipe</p>
 								<ul>
-									<li>Defined in node_modules/@stencila/executa/dist/lib/base/Executor.d.ts:220</li>
+									<li>Defined in node_modules/@stencila/executa/dist/lib/base/Executor.d.ts:222</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1025,7 +1086,7 @@
 									</div>
 								</li>
 								<li>
-									<h5>calls: <span class="tsd-signature-symbol">(</span><span class="tsd-signature-type">manifest</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">decode</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">encode</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">query</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">compile</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">build</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">execute</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">begin</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">end</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">pipe</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">Method</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span></h5>
+									<h5>calls: <span class="tsd-signature-symbol">(</span><span class="tsd-signature-type">manifest</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">decode</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">encode</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">query</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">compile</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">build</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">execute</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">begin</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">end</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">pipe</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">cancel</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">Method</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>A list of method, parameters tuples to pipe the node through</p>
 									</div>
@@ -1047,7 +1108,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Executor.query</p>
 								<ul>
-									<li>Defined in node_modules/@stencila/executa/dist/lib/base/Executor.d.ts:158</li>
+									<li>Defined in node_modules/@stencila/executa/dist/lib/base/Executor.d.ts:159</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1173,7 +1234,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/stencila/basha/blob/f20c7fe/src/index.ts#L150">src/index.ts:150</a></li>
+									<li>Defined in <a href="https://github.com/stencila/basha/blob/3aed9b9/src/index.ts#L191">src/index.ts:191</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1199,7 +1260,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides Listener.stop</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/stencila/basha/blob/f20c7fe/src/index.ts#L260">src/index.ts:260</a></li>
+									<li>Defined in <a href="https://github.com/stencila/basha/blob/3aed9b9/src/index.ts#L312">src/index.ts:312</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1243,6 +1304,9 @@
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="basha.html#isstopping" class="tsd-kind-icon">is<wbr>Stopping</a>
 							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+								<a href="basha.html#job" class="tsd-kind-icon">job</a>
+							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="basha.html#lock" class="tsd-kind-icon">lock</a>
 							</li>
@@ -1275,6 +1339,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited">
 								<a href="basha.html#call" class="tsd-kind-icon">call</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+								<a href="basha.html#cancel" class="tsd-kind-icon">cancel</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
 								<a href="basha.html#capabilities" class="tsd-kind-icon">capabilities</a>
@@ -1345,6 +1412,9 @@
 					</li>
 					<li class=" tsd-kind-variable tsd-is-not-exported">
 						<a href="../globals.html#log" class="tsd-kind-icon">log</a>
+					</li>
+					<li class=" tsd-kind-function tsd-is-not-exported">
+						<a href="../globals.html#chunk" class="tsd-kind-icon">chunk</a>
 					</li>
 				</ul>
 			</nav>
