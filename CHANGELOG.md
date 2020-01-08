@@ -1,3 +1,17 @@
+# [0.3.0](https://github.com/stencila/basha/compare/v0.2.1...v0.3.0) (2020-01-08)
+
+
+### Bug Fixes
+
+* **Dependencies:** Upgrade Executa ([cf4fbb6](https://github.com/stencila/basha/commit/cf4fbb6a9a6f0bfc5e9f2f796831232747502b0b))
+* Outputs may be undefined ([5a3f84f](https://github.com/stencila/basha/commit/5a3f84f5f9c7b6f18cd7d62097a858c8f801d4e1))
+
+
+### Features
+
+* **Cancel:** Add a cancel method. ([c930f12](https://github.com/stencila/basha/commit/c930f121a361bbbd3000cf3fd779643b9c96a879))
+* **Cancel:** Add cancel to capabilities ([35ed3fe](https://github.com/stencila/basha/commit/35ed3fee1b6385c69671107595db8e60aa12a84c))
+
 ## [0.2.1](https://github.com/stencila/basha/compare/v0.2.0...v0.2.1) (2019-12-19)
 
 
