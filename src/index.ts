@@ -109,7 +109,8 @@ export class Basha extends Listener {
     return Promise.resolve({
       manifest: true,
       compile: params,
-      execute: params
+      execute: params,
+      cancel: true
     })
   }
 
