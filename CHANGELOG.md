@@ -1,3 +1,10 @@
+## [0.3.1](https://github.com/stencila/basha/compare/v0.3.0...v0.3.1) (2020-02-05)
+
+
+### Bug Fixes
+
+* **Deps:** Upgrade to 1.7.3 ([27ce77f](https://github.com/stencila/basha/commit/27ce77ff191f964d89768f44041f17f2c080377a))
+
 # [0.3.0](https://github.com/stencila/basha/compare/v0.2.1...v0.3.0) (2020-01-08)
 
 
