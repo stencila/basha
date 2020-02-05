@@ -142,7 +142,12 @@ export class Basha extends Listener {
           duration = Math.round((performance.now() - before) * 1e3) / 1e6
         } catch (error) {
           const { message } = error
-          errors = [schema.codeError({ errorType: 'RuntimeError', errorMessage: message })]
+          errors = [
+            schema.codeError({
+              errorType: 'RuntimeError',
+              errorMessage: message
+            })
+          ]
         }
 
         this.job = undefined

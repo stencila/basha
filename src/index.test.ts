@@ -13,7 +13,8 @@ afterEach(async () => {
 })
 
 const chunk = (text: string): schema.CodeChunk =>
-  schema.codeChunk(text, {
+  schema.codeChunk({
+    text,
     programmingLanguage: 'bash'
   })
 
@@ -78,7 +79,8 @@ Hello 3 times`)
 
 describe('execute', () => {
   test('code chunk', async () => {
-    const chunk = schema.codeChunk('echo \'{"a":1}\'', {
+    const chunk = schema.codeChunk({
+      text: 'echo \'{"a":1}\'',
       programmingLanguage: 'bash'
     })
     const executed = await basha.execute(chunk)
@@ -88,7 +90,8 @@ describe('execute', () => {
   })
 
   test('code expression', async () => {
-    const chunk = schema.codeExpression('echo \'{"a":1}\'', {
+    const chunk = schema.codeExpression({
+      text: 'echo \'{"a":1}\'',
       programmingLanguage: 'bash'
     })
     const executed = await basha.execute(chunk)
@@ -102,14 +105,10 @@ describe('execute', () => {
 
     // Make two requests to execute
     const p1 = basha.execute(
-      schema.codeChunk('VAR=first', {
-        programmingLanguage: 'bash'
-      })
+      schema.codeChunk({ text: 'VAR=first', programmingLanguage: 'bash' })
     )
     const p2 = basha.execute(
-      schema.codeChunk('echo $VAR', {
-        programmingLanguage: 'bash'
-      })
+      schema.codeChunk({ text: 'echo $VAR', programmingLanguage: 'bash' })
     )
 
     // Wait for them and check that the second ran after the first
@@ -119,26 +118,27 @@ describe('execute', () => {
   })
 
   test('errors', async () => {
-    const chunk = schema.codeChunk('foo', { programmingLanguage: 'bash' })
+    const chunk = schema.codeChunk({ text: 'foo', programmingLanguage: 'bash' })
     const executed = await basha.execute(chunk)
     const { outputs, errors } = executed
     expect(outputs).toBeUndefined()
     expect(errors).toEqual([
-      schema.codeError('RuntimeError', {
-        message: 'bash: foo: command not found'
+      schema.codeError({
+        errorType: 'RuntimeError',
+        errorMessage: 'bash: foo: command not found'
       })
     ])
   })
 
   test('duration', async () => {
     const { duration: duration1 } = await basha.execute(
-      schema.codeChunk('sleep 0.1', { programmingLanguage: 'bash' })
+      schema.codeChunk({ text: 'sleep 0.1', programmingLanguage: 'bash' })
     )
     expect(duration1).toBeGreaterThanOrEqual(0.1)
     expect(duration1).toBeLessThanOrEqual(0.2)
 
     const { duration: duration2 } = await basha.execute(
-      schema.codeChunk('sleep 0.2', { programmingLanguage: 'bash' })
+      schema.codeChunk({ text: 'sleep 0.2', programmingLanguage: 'bash' })
     )
     expect(duration2).toBeGreaterThanOrEqual(0.2)
     expect(duration2).toBeLessThanOrEqual(0.3)
@@ -150,10 +150,10 @@ describe('execute', () => {
       basha.execute(null)
     ).rejects.toThrow(CapabilityError)
     await expect(
-      basha.execute(schema.codeChunk(''))
+      basha.execute(schema.codeChunk({text:''}))
     ).rejects.toThrow(CapabilityError)
     await expect(
-      basha.execute(schema.codeChunk('', { programmingLanguage: 'foo' }))
+      basha.execute(schema.codeChunk({text:'', programmingLanguage: 'foo' }))
     ).rejects.toThrow(CapabilityError)
   })
 })
