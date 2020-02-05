@@ -1,3 +1,10 @@
+## [0.3.2](https://github.com/stencila/basha/compare/v0.3.1...v0.3.2) (2020-02-05)
+
+
+### Bug Fixes
+
+* Add node shebang so works as bin script ([55ba17c](https://github.com/stencila/basha/commit/55ba17caba997d92c08f4de097f0db04f5769c90))
+
 ## [0.3.1](https://github.com/stencila/basha/compare/v0.3.0...v0.3.1) (2020-02-05)
 
 
