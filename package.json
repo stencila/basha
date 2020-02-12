@@ -48,7 +48,7 @@
   "devDependencies": {
     "@stencila/dev-config": "1.4.11",
     "@types/async-lock": "1.1.1",
-    "@types/jest": "25.1.1",
+    "@types/jest": "25.1.2",
     "jest": "25.1.0",
     "ts-jest": "25.2.0",
     "ts-node": "8.6.2",
