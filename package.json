@@ -1,6 +1,6 @@
 {
   "name": "@stencila/basha",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "description": "Bash interpreter for Stencila",
   "main": "dist/index.js",
   "bin": "dist/index.js",
