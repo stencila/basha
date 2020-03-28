@@ -1,7 +1,7 @@
 {
   "name": "@stencila/basha",
   "version": "0.3.6",
-  "description": "Bash interpreter for Stencila",
+  "description": "Bash interpreter for executable documents",
   "main": "dist/index.js",
   "bin": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -29,10 +29,10 @@
     "url": "git+https://github.com/stencila/basha.git"
   },
   "keywords": [
-    "bash",
-    "interpreter",
+    "Bash",
     "Stencila",
-    "Executa"
+    "interpreter",
+    "executor"
   ],
   "author": "Stencila <hello@stenci.la>",
   "license": "Apache-2.0",
