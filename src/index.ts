@@ -11,7 +11,7 @@ import {
   schema,
   Server,
   StdioServer,
-  Claims
+  Claims,
 } from '@stencila/executa'
 import AsyncLock from 'async-lock'
 import * as pty from 'node-pty'
@@ -78,7 +78,7 @@ export class Basha extends Listener {
 
   constructor(
     servers: Server[] = [
-      new StdioServer({ command: 'node', args: [__filename, 'start'] })
+      new StdioServer({ command: 'node', args: [__filename, 'start'] }),
     ]
   ) {
     super('ba', servers)
@@ -96,23 +96,23 @@ export class Basha extends Listener {
           required: ['type', 'programmingLanguage', 'text'],
           properties: {
             type: {
-              enum: ['CodeChunk', 'CodeExpression']
+              enum: ['CodeChunk', 'CodeExpression'],
             },
             programmingLanguage: {
-              enum: this.programmingLanguages
+              enum: this.programmingLanguages,
             },
             text: {
-              type: 'string'
-            }
-          }
-        }
-      }
+              type: 'string',
+            },
+          },
+        },
+      },
     }
     return Promise.resolve({
       manifest: true,
       compile: params,
       execute: params,
-      cancel: true
+      cancel: true,
     })
   }
 
@@ -147,8 +147,8 @@ export class Basha extends Listener {
           errors = [
             schema.codeError({
               errorType: 'RuntimeError',
-              errorMessage: message
-            })
+              errorMessage: message,
+            }),
           ]
         }
 
@@ -206,8 +206,8 @@ export class Basha extends Listener {
       {
         env: {
           // Use custom prompt to be able to detect readiness
-          PS1: this.prompt
-        }
+          PS1: this.prompt,
+        },
       }
     ))
 
@@ -269,9 +269,9 @@ export class Basha extends Listener {
         this.isReady = false
       }
       return this.isReady
-        ? new Promise<string | undefined>(resolve => enter(resolve))
+        ? new Promise<string | undefined>((resolve) => enter(resolve))
         : new Promise<string | undefined>(
-            resolve => (this.whenReady = () => enter(resolve))
+            (resolve) => (this.whenReady = () => enter(resolve))
           )
     })
   }
@@ -330,4 +330,4 @@ export class Basha extends Listener {
 
 // istanbul ignore next
 if (require.main === module)
-  cli.main(new Basha()).catch(error => log.error(error))
+  cli.main(new Basha()).catch((error) => log.error(error))

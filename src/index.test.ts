@@ -15,7 +15,7 @@ afterEach(async () => {
 const chunk = (text: string): schema.CodeChunk =>
   schema.codeChunk({
     text,
-    programmingLanguage: 'bash'
+    programmingLanguage: 'bash',
   })
 
 test('manifest', async () => {
@@ -81,7 +81,7 @@ describe('execute', () => {
   test('code chunk', async () => {
     const chunk = schema.codeChunk({
       text: 'echo \'{"a":1}\'',
-      programmingLanguage: 'bash'
+      programmingLanguage: 'bash',
     })
     const executed = await basha.execute(chunk)
     const { outputs, errors } = executed
@@ -92,7 +92,7 @@ describe('execute', () => {
   test('code expression', async () => {
     const chunk = schema.codeExpression({
       text: 'echo \'{"a":1}\'',
-      programmingLanguage: 'bash'
+      programmingLanguage: 'bash',
     })
     const executed = await basha.execute(chunk)
     const { output, errors } = executed
@@ -125,8 +125,8 @@ describe('execute', () => {
     expect(errors).toEqual([
       schema.codeError({
         errorType: 'RuntimeError',
-        errorMessage: 'bash: foo: command not found'
-      })
+        errorMessage: 'bash: foo: command not found',
+      }),
     ])
   })
 
@@ -171,15 +171,15 @@ describe('cancel', () => {
     const chunk2 = chunk('sleep 30')
     basha
       .execute(chunk2, undefined, undefined, 'job-2')
-      .then(chunk => {
+      .then((chunk) => {
         // When it cancels it resolves with an error (due to non-zero exit code)
         expect(chunk.outputs).toEqual(['^C'])
       })
-      .catch(error => console.error(error))
+      .catch((error) => console.error(error))
 
     // Wait a tiny amount for the previous chunk to finish
     // writing it's input before we cancel it
-    await new Promise(resolve => setTimeout(resolve, 10))
+    await new Promise((resolve) => setTimeout(resolve, 10))
 
     // Now cancel the chunk
     expect(await basha.cancel('job-2')).toBe(true)
