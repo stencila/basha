@@ -1,3 +1,10 @@
+## [0.3.7](https://github.com/stencila/basha/compare/v0.3.6...v0.3.7) (2020-05-03)
+
+
+### Bug Fixes
+
+* **Deps:** Upgrade Executa to 1.11.1 ([ccd4d0a](https://github.com/stencila/basha/commit/ccd4d0ad04e11a9fd25d1b52200db93366de0043))
+
 ## [0.3.6](https://github.com/stencila/basha/compare/v0.3.5...v0.3.6) (2020-03-23)
 
 
