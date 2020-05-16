@@ -49,8 +49,8 @@
     "@stencila/dev-config": "1.4.36",
     "@types/async-lock": "1.1.2",
     "@types/jest": "25.2.2",
-    "jest": "25.5.4",
-    "ts-jest": "25.5.1",
+    "jest": "26.0.1",
+    "ts-jest": "26.0.0",
     "ts-node": "8.10.1",
     "typedoc": "0.17.6",
     "typescript": "3.9.2"
