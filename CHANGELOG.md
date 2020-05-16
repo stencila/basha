@@ -1,3 +1,11 @@
+## [0.3.8](https://github.com/stencila/basha/compare/v0.3.7...v0.3.8) (2020-05-16)
+
+
+### Bug Fixes
+
+* **dependencies:** update dependency async-lock to ^1.2.4 ([b553f5b](https://github.com/stencila/basha/commit/b553f5bf63f36b6475980e5fe4562666a8aafece))
+* **Deps:** Update Executa ([571ec7f](https://github.com/stencila/basha/commit/571ec7f5ec8256dcc836c0f8484efffe847210e1))
+
 ## [0.3.7](https://github.com/stencila/basha/compare/v0.3.6...v0.3.7) (2020-05-03)
 
 
