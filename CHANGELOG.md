@@ -1,3 +1,10 @@
+## [0.3.10](https://github.com/stencila/basha/compare/v0.3.9...v0.3.10) (2020-05-27)
+
+
+### Bug Fixes
+
+* **Deps:** Update Executa ([bbe009b](https://github.com/stencila/basha/commit/bbe009bed561f3dc4909293358f8889564fbd445))
+
 ## [0.3.9](https://github.com/stencila/basha/compare/v0.3.8...v0.3.9) (2020-05-21)
 
 
