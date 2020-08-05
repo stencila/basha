@@ -1,3 +1,10 @@
+## [0.3.12](https://github.com/stencila/basha/compare/v0.3.11...v0.3.12) (2020-08-05)
+
+
+### Bug Fixes
+
+* **Deps:** NPM audit fix ([3145226](https://github.com/stencila/basha/commit/3145226af74c92ba05e95a522f8826ea78e1669a))
+
 ## [0.3.11](https://github.com/stencila/basha/compare/v0.3.10...v0.3.11) (2020-08-05)
 
 
