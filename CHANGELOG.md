@@ -1,3 +1,10 @@
+## [0.3.11](https://github.com/stencila/basha/compare/v0.3.10...v0.3.11) (2020-08-05)
+
+
+### Bug Fixes
+
+* **dependencies:** update dependency @stencila/executa to ^1.12.0 ([0cd929d](https://github.com/stencila/basha/commit/0cd929d1b598cb38ac35f22e2aaae4d59a34c5c4))
+
 ## [0.3.10](https://github.com/stencila/basha/compare/v0.3.9...v0.3.10) (2020-05-27)
 
 
