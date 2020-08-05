@@ -143,7 +143,8 @@ export class Basha extends Listener {
           output = await this.executeCode(text)
           duration = Math.round((performance.now() - before) * 1e3) / 1e6
         } catch (error) {
-          const { message } = error
+          const message =
+            error instanceof Error ? error.message : (error as string)
           errors = [
             schema.codeError({
               errorType: 'RuntimeError',
@@ -281,17 +282,17 @@ export class Basha extends Listener {
    *
    * This method enters the code, parses the output and
    * checks the exit code. If the exit code is non-zero
-   * if throws an error with the output.
+   * it throws an error with the output.
    *
    * @param code Code to execute
    * @returns A promise resolving to the output from the command.
    */
-  async executeCode(code: string): Promise<string | undefined> {
+  async executeCode(code: string): Promise<unknown | undefined> {
     const output = await this.enterCode(code)
     const result = output !== undefined ? this.parseOutput(output) : undefined
     const exitCode = await this.enterCode('echo $?')
     if (exitCode === '0') return result
-    else throw new Error(result)
+    else throw new Error(`${result as string}`)
   }
 
   /**
@@ -304,9 +305,9 @@ export class Basha extends Listener {
    *
    * @param output Output string to parse
    */
-  parseOutput(output: string): string {
+  parseOutput(output: string): unknown {
     try {
-      return JSON.parse(output)
+      return JSON.parse(output) as unknown
     } catch {
       return output
     }

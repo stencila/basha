@@ -165,7 +165,7 @@ describe('cancel', () => {
 
     // Set a var to check that we have the same Bash
     // session after cancelling
-    const chunk1 = await basha.execute(chunk('VAR=42'))
+    await basha.execute(chunk('VAR=42'))
 
     // Asynchronously execute a chunk that is meant to sleep for a while
     const chunk2 = chunk('sleep 30')
