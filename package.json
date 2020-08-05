@@ -41,7 +41,7 @@
   },
   "homepage": "https://github.com/stencila/basha#readme",
   "dependencies": {
-    "@stencila/executa": "^1.11.8",
+    "@stencila/executa": "^1.12.0",
     "async-lock": "^1.2.4",
     "node-pty": "^0.9.0"
   },
