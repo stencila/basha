@@ -1,3 +1,11 @@
+## [0.3.15](https://github.com/stencila/basha/compare/v0.3.14...v0.3.15) (2020-11-03)
+
+
+### Bug Fixes
+
+* **Basha:** Warn on premature exit ([4022d4c](https://github.com/stencila/basha/commit/4022d4c3635d98a0d0c85f0c621be51f52163387))
+* **dependencies:** update dependency @stencila/executa to ^1.14.2 ([3f750ae](https://github.com/stencila/basha/commit/3f750ae3cac550901a2a8c14c600b36abbdd4fe9))
+
 ## [0.3.14](https://github.com/stencila/basha/compare/v0.3.13...v0.3.14) (2020-08-26)
 
 
