@@ -67,29 +67,29 @@
 				<a href="#🔨-basha" id="🔨-basha" style="color: inherit; text-decoration: none;">
 					<h1>🔨 Basha</h1>
 				</a>
-				<a href="#bash-interpreter-for-stencila" id="bash-interpreter-for-stencila" style="color: inherit; text-decoration: none;">
-					<h4>Bash interpreter for Stencila</h4>
+				<a href="#bash-executor-for-executable-documents" id="bash-executor-for-executable-documents" style="color: inherit; text-decoration: none;">
+					<h4>Bash executor for executable documents</h4>
 				</a>
 				<p><a href="https://dev.azure.com/stencila/stencila/_build/latest?definitionId=2&amp;branchName=master"><img src="https://dev.azure.com/stencila/stencila/_apis/build/status/stencila.basha?branchName=master" alt="Build Status"></a>
 					<a href="https://codecov.io/gh/stencila/basha"><img src="https://codecov.io/gh/stencila/basha/branch/master/graph/badge.svg" alt="Code coverage"></a>
 					<a href="https://www.npmjs.com/package/@stencila/basha"><img src="https://img.shields.io/npm/v/@stencila/basha.svg?style=flat" alt="NPM"></a>
 				<a href="https://stencila.github.io/basha/"><img src="https://img.shields.io/badge/docs-latest-blue.svg" alt="Docs"></a></p>
-				<a href="#install" id="install" style="color: inherit; text-decoration: none;">
-					<h2>Install</h2>
+				<a href="#📦-install" id="📦-install" style="color: inherit; text-decoration: none;">
+					<h2>📦 Install</h2>
 				</a>
 				<p>Basha is available as a Node.js package,</p>
-				<pre><code class="language-bash">npm install --global @stencila/basha</code></pre>
-				<p>In the future, Basha will be bundled as part of the self contained <a href="https://github.com/stencila/stencila#cli">Stencila command line tool</a>.</p>
+				<pre><code class="language-bash">npm install @stencila/basha --global</code></pre>
+				<p>In the future, Basha is likely to be bundled as part of the self contained <a href="https://github.com/stencila/stencila#cli">Stencila command line tool</a>.</p>
 				<p>Windows is <a href="https://github.com/stencila/basha/issues/2">not yet supported</a>.</p>
-				<a href="#use" id="use" style="color: inherit; text-decoration: none;">
-					<h2>Use</h2>
+				<a href="#🚀-use" id="🚀-use" style="color: inherit; text-decoration: none;">
+					<h2>🚀 Use</h2>
 				</a>
 				<p>Register Basha so that it can be discovered by other executors on your machine,</p>
 				<pre><code class="language-bash">basha register</code></pre>
 				<p>If you have <a href="https://github.com/stencila/executa"><code>executa</code></a> installed globally, you can then run Basha using the <code>execute</code> command and specifying <code>bash</code> as the starting language,</p>
 				<pre><code class="language-bash">executa execute --repl --lang bash</code></pre>
-				<a href="#develop" id="develop" style="color: inherit; text-decoration: none;">
-					<h2>Develop</h2>
+				<a href="#🛠️-develop" id="🛠️-develop" style="color: inherit; text-decoration: none;">
+					<h2>🛠️ Develop</h2>
 				</a>
 				<p>You can test Basha manually using the local install of <code>executa</code> in this package. First, build and register the current version of Basha, so that Executa is able to find it,</p>
 				<pre><code class="language-bash">npm run register
