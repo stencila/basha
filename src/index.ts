@@ -222,7 +222,7 @@ export class Basha extends Listener {
     })
 
     terminal.onExit(() => {
-      if (!this.isStopping) log.error(`Bash exited prematurely`)
+      if (!this.isStopping) log.warn(`Bash exited prematurely`)
       if (this.whenReady !== undefined) this.whenReady()
       this.terminal = undefined
     })
