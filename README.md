@@ -1,25 +1,25 @@
 # 🔨 Basha
 
-#### Bash interpreter for Stencila
+#### Bash executor for executable documents
 
 [![Build Status](https://dev.azure.com/stencila/stencila/_apis/build/status/stencila.basha?branchName=master)](https://dev.azure.com/stencila/stencila/_build/latest?definitionId=2&branchName=master)
 [![Code coverage](https://codecov.io/gh/stencila/basha/branch/master/graph/badge.svg)](https://codecov.io/gh/stencila/basha)
 [![NPM](https://img.shields.io/npm/v/@stencila/basha.svg?style=flat)](https://www.npmjs.com/package/@stencila/basha)
 [![Docs](https://img.shields.io/badge/docs-latest-blue.svg)](https://stencila.github.io/basha/)
 
-## Install
+## 📦 Install
 
 Basha is available as a Node.js package,
 
 ```bash
-npm install --global @stencila/basha
+npm install @stencila/basha --global
 ```
 
-In the future, Basha will be bundled as part of the self contained [Stencila command line tool](https://github.com/stencila/stencila#cli).
+In the future, Basha is likely to be bundled as part of the self contained [Stencila command line tool](https://github.com/stencila/stencila#cli).
 
 Windows is [not yet supported](https://github.com/stencila/basha/issues/2).
 
-## Use
+## 🚀 Use
 
 Register Basha so that it can be discovered by other executors on your machine,
 
@@ -33,7 +33,7 @@ If you have [`executa`](https://github.com/stencila/executa) installed globally,
 executa execute --repl --lang bash
 ```
 
-## Develop
+## 🛠️ Develop
 
 You can test Basha manually using the local install of `executa` in this package. First, build and register the current version of Basha, so that Executa is able to find it,
 
