@@ -4,12 +4,12 @@ jobs:
   - job: test
     strategy:
       matrix:
+        linux_node_14:
+          image_name: ubuntu-latest
+          node_version: 14.x
         linux_node_12:
           image_name: ubuntu-latest
           node_version: 12.x
-        linux_node_10:
-          image_name: ubuntu-latest
-          node_version: 10.x
 
         # MacOS currently failing. See #1
         # mac:
@@ -54,7 +54,7 @@ jobs:
     steps:
       - task: NodeTool@0
         inputs:
-          versionSpec: 12.x
+          versionSpec: 14.x
         displayName: 'Install Node.js'
 
       - script: |
