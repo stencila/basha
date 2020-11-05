@@ -46,14 +46,14 @@
     "node-pty": "^0.9.0"
   },
   "devDependencies": {
-    "@stencila/dev-config": "1.4.76",
+    "@stencila/dev-config": "1.4.95",
     "@types/async-lock": "1.1.2",
-    "@types/jest": "26.0.14",
-    "jest": "26.4.2",
-    "ts-jest": "26.4.1",
+    "@types/jest": "26.0.15",
+    "jest": "26.6.3",
+    "ts-jest": "26.4.3",
     "ts-node": "9.0.0",
     "typedoc": "0.19.2",
-    "typescript": "4.0.3"
+    "typescript": "4.0.5"
   },
   "jest": {
     "preset": "ts-jest",
