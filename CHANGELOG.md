@@ -1,3 +1,11 @@
+## [0.3.17](https://github.com/stencila/basha/compare/v0.3.16...v0.3.17) (2020-12-11)
+
+
+### Bug Fixes
+
+* **dependencies:** update dependency @stencila/executa to ^1.15.4 ([fc4c562](https://github.com/stencila/basha/commit/fc4c562ee8fa2ee3a8888c961729c1f93d549b4f))
+* **dependencies:** update dependency async-lock to ^1.2.6 ([2e25486](https://github.com/stencila/basha/commit/2e254861a06ed3a57582eff6a335da03172b2e4c))
+
 ## [0.3.16](https://github.com/stencila/basha/compare/v0.3.15...v0.3.16) (2020-11-06)
 
 
