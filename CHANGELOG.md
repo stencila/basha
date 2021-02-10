@@ -1,3 +1,10 @@
+## [0.3.18](https://github.com/stencila/basha/compare/v0.3.17...v0.3.18) (2021-02-10)
+
+
+### Bug Fixes
+
+* **dependencies:** update dependency node-pty to ^0.10.0 ([b5ea9f6](https://github.com/stencila/basha/commit/b5ea9f6adbc251893add54a13b7a77d91d451dbf))
+
 ## [0.3.17](https://github.com/stencila/basha/compare/v0.3.16...v0.3.17) (2020-12-11)
 
 
