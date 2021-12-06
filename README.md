@@ -7,6 +7,10 @@
 [![NPM](https://img.shields.io/npm/v/@stencila/basha.svg?style=flat)](https://www.npmjs.com/package/@stencila/basha)
 [![Docs](https://img.shields.io/badge/docs-latest-blue.svg)](https://stencila.github.io/basha/)
 
+## ⚠️ Deprecated
+
+This project is deprecated and no longer maintained. At the time of writing, we are instead focussing on using a Bash "microkernel" or [`bash_kernel`](https://github.com/takluyver/bash_kernel) for execution of Bash code in Stencila. Please see, our main repository, [`stencila/stencila`](https://github.com/stencila/stencila) for further information.
+
 ## 📦 Install
 
 Basha is available as a Node.js package,
