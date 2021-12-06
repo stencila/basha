@@ -92,11 +92,6 @@
     }
   },
   "prettier": "@stencila/dev-config/prettier-config.json",
-  "renovate": {
-    "extends": [
-      "@stencila"
-    ]
-  },
   "release": {
     "extends": "@stencila/semantic-release-config"
   }
